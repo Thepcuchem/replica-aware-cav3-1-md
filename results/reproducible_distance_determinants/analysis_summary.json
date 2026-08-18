@@ -1,0 +1,11 @@
+{
+  "replica_matching": "run1 vs run1, run2 vs run2, run3 vs run3",
+  "features_tested_per_comparison": 2016,
+  "sign_consistent_feature_counts": {
+    "Z944_vs_Apo": 257,
+    "mZ944_vs_Apo": 600,
+    "mZ944_vs_Z944": 469
+  },
+  "ranking": "Descending minimum absolute standardized effect across the three replica-matched comparisons, then absolute mean effect.",
+  "interpretation_limit": "These are descriptive reproducibility rankings, not independent-frame significance tests. Temporal autocorrelation precludes treating frames as independent replicates."
+}

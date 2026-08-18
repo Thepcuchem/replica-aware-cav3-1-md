@@ -1,0 +1,12 @@
+{
+  "top_pairs_integrated_per_comparison": 25,
+  "unique_residues": 43,
+  "direct_contact_coupled_residues": 11,
+  "structural_network_residues": 32,
+  "evidence_thresholds": {
+    "ProLIF_mean_contact": 0.1,
+    "MMGBSA_total_kcal_mol": -0.5,
+    "Z944_water_bridge_mean_percent": 5.0
+  },
+  "scope": "Water-bridge evidence is available only for Z944. MM/GBSA and ProLIF apply only to ligand-bound systems."
+}

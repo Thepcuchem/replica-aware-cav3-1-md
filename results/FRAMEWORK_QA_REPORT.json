@@ -1,0 +1,477 @@
+{
+  "overall_status": "PASS",
+  "checks_passed": 59,
+  "checks_total": 59,
+  "checkpoint_inventory": [
+    {
+      "system": "Apo",
+      "replica": 1,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 299.97,
+      "unique_residues": 64
+    },
+    {
+      "system": "Apo",
+      "replica": 2,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "Apo",
+      "replica": 3,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "Z944",
+      "replica": 1,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "Z944",
+      "replica": 2,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "Z944",
+      "replica": 3,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "mZ944",
+      "replica": 1,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.00000000000006,
+      "unique_residues": 64
+    },
+    {
+      "system": "mZ944",
+      "replica": 2,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    },
+    {
+      "system": "mZ944",
+      "replica": 3,
+      "shape": [
+        1501,
+        2016
+      ],
+      "finite": true,
+      "time_monotonic": true,
+      "time_span_ns": 300.0,
+      "unique_residues": 64
+    }
+  ],
+  "checks": [
+    {
+      "check": "checkpoint_shape_Apo_run1",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Apo_run1",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Apo_run1",
+      "passed": true,
+      "detail": 299.97
+    },
+    {
+      "check": "checkpoint_residues_Apo_run1",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "checkpoint_shape_Apo_run2",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Apo_run2",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Apo_run2",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_Apo_run2",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_Apo_run2",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_Apo_run3",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Apo_run3",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Apo_run3",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_Apo_run3",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_Apo_run3",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_Z944_run1",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Z944_run1",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Z944_run1",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_Z944_run1",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_Z944_run1",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_Z944_run2",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Z944_run2",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Z944_run2",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_Z944_run2",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_Z944_run2",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_Z944_run3",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_Z944_run3",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_Z944_run3",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_Z944_run3",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_Z944_run3",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_mZ944_run1",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_mZ944_run1",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_mZ944_run1",
+      "passed": true,
+      "detail": 300.00000000000006
+    },
+    {
+      "check": "checkpoint_residues_mZ944_run1",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_mZ944_run1",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_mZ944_run2",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_mZ944_run2",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_mZ944_run2",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_mZ944_run2",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_mZ944_run2",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "checkpoint_shape_mZ944_run3",
+      "passed": true,
+      "detail": [
+        1501,
+        2016
+      ]
+    },
+    {
+      "check": "checkpoint_finite_mZ944_run3",
+      "passed": true,
+      "detail": "all finite"
+    },
+    {
+      "check": "checkpoint_time_mZ944_run3",
+      "passed": true,
+      "detail": 300.0
+    },
+    {
+      "check": "checkpoint_residues_mZ944_run3",
+      "passed": true,
+      "detail": 64
+    },
+    {
+      "check": "feature_order_mZ944_run3",
+      "passed": true,
+      "detail": "matches reference"
+    },
+    {
+      "check": "table_rows_distance_pca_coordinates.csv",
+      "passed": true,
+      "detail": 13509
+    },
+    {
+      "check": "table_rows_matched_common_rmsd_features.csv",
+      "passed": true,
+      "detail": 13509
+    },
+    {
+      "check": "table_rows_candidate_state_assignments.csv",
+      "passed": true,
+      "detail": 13509
+    },
+    {
+      "check": "table_rows_all_replica_matched_distance_effects.csv",
+      "passed": true,
+      "detail": 6048
+    },
+    {
+      "check": "table_rows_determinant_uncertainty_validation.csv",
+      "passed": true,
+      "detail": 75
+    },
+    {
+      "check": "table_rows_integrated_residue_evidence.csv",
+      "passed": true,
+      "detail": 43
+    },
+    {
+      "check": "dual_uncertainty_supported_counts",
+      "passed": true,
+      "detail": {
+        "Z944_vs_Apo": 15,
+        "mZ944_vs_Apo": 10,
+        "mZ944_vs_Z944": 12
+      }
+    },
+    {
+      "check": "mapping_files_Z944_vs_Apo",
+      "passed": true,
+      "detail": {
+        "Z944_vs_Apo_determinants.pdb": 642424,
+        "Z944_vs_Apo_determinants.vmd.tcl": 4153,
+        "Z944_vs_Apo_determinants.pml": 2222
+      }
+    },
+    {
+      "check": "mapping_scores_Z944_vs_Apo",
+      "passed": true,
+      "detail": {
+        "parsed_atoms": 8131,
+        "minimum": -99.99,
+        "maximum": 22.58
+      }
+    },
+    {
+      "check": "mapping_files_mZ944_vs_Apo",
+      "passed": true,
+      "detail": {
+        "mZ944_vs_Apo_determinants.pdb": 642424,
+        "mZ944_vs_Apo_determinants.vmd.tcl": 4156,
+        "mZ944_vs_Apo_determinants.pml": 2245
+      }
+    },
+    {
+      "check": "mapping_scores_mZ944_vs_Apo",
+      "passed": true,
+      "detail": {
+        "parsed_atoms": 8131,
+        "minimum": -99.99,
+        "maximum": 86.24
+      }
+    },
+    {
+      "check": "mapping_files_mZ944_vs_Z944",
+      "passed": true,
+      "detail": {
+        "mZ944_vs_Z944_determinants.pdb": 642424,
+        "mZ944_vs_Z944_determinants.vmd.tcl": 4150,
+        "mZ944_vs_Z944_determinants.pml": 2265
+      }
+    },
+    {
+      "check": "mapping_scores_mZ944_vs_Z944",
+      "passed": true,
+      "detail": {
+        "parsed_atoms": 8131,
+        "minimum": -71.49,
+        "maximum": 99.99
+      }
+    },
+    {
+      "check": "required_reporting_files",
+      "passed": true,
+      "detail": {
+        "VALIDATED_RESULTS_REPORT.md": true,
+        "MANUSCRIPT_DRAFT.md": true,
+        "FIGURE_CAPTIONS.md": true,
+        "analysis_status.csv": true,
+        "figure_index.csv": true,
+        "RESULTS_MANIFEST.csv": true
+      }
+    },
+    {
+      "check": "results_manifest_integrity",
+      "passed": true,
+      "detail": {
+        "entries": 94,
+        "failures": []
+      }
+    }
+  ]
+}

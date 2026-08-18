@@ -1,0 +1,15 @@
+{
+  "systems": [
+    "Apo",
+    "Z944",
+    "mZ944"
+  ],
+  "replicas_per_system": 3,
+  "frames_per_replica": 1501,
+  "candidate_states_per_replica": 2,
+  "global_pca_components": 30,
+  "components_used_for_clustering": 30,
+  "variance_captured_for_clustering": 0.7976693511009216,
+  "matching_method": "Within each system, run2/run3 state centroids were assigned one-to-one to run1 centroids by minimum Euclidean distance in global PCA space.",
+  "caveat": "Matched labels indicate nearest structural centroids, not validated metastable equivalence. Kinetics require lag-time convergence tests."
+}

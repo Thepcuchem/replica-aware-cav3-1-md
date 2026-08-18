@@ -1,0 +1,720 @@
+MD SYSTEM AND TRAJECTORY-ANALYSIS INFORMATION:
+Z944, mZ944, AND APO
+================================================
+
+Last updated: 23 July 2026
+
+1. SYSTEM DIRECTORIES AND TOPOLOGIES
+------------------------------------
+
+Z944 (protein with Z944 ligand)
+  Root directory: /work1/ted/June2023/WithLigand
+  PDB:  /work1/ted/June2023/WithLigand/ionized.pdb
+  PSF:  /work1/ted/June2023/WithLigand/ionized.psf
+  Ligand residue name: DZR
+
+mZ944 (protein with modified Z944 ligand)
+  Root directory: /mnt/passport/work1/ted/June2023/WithmodLigand
+  PDB:  /mnt/passport/work1/ted/June2023/WithmodLigand/ionized.pdb
+  PSF:  /mnt/passport/work1/ted/June2023/WithmodLigand/ionized.psf
+  Ligand residue name: DZR
+  Ligand segment in the PSF: DZR
+
+Apo (ligand-free protein)
+  Root directory: /mnt/passport/work1/ted/June2023/NoLig
+  PDB:  /mnt/passport/work1/ted/June2023/NoLig/ionized.pdb
+  PSF:  /mnt/passport/work1/ted/June2023/NoLig/ionized.psf
+  No DZR ligand is present.
+
+All systems contain two calcium ions named CAL.
+
+
+2. MD REPLICAS AND RMSD INTERVALS ANALYZED
+------------------------------------------
+
+Z944 run1
+  Trajectory directory: /work1/ted/June2023/WithLigand/md_run1
+  Files used for the last 600 ns: md-11.dcd through md-89.dcd
+  Analyzed interval: 50.0-649.9 ns
+
+Z944 run2
+  Trajectory directory: /work1/ted/June2023/WithLigand/md_run2
+  Files used: md-06.dcd through the readable portion of md-30.dcd
+  Analyzed interval: 0.0-494.6 ns
+
+Z944 run3
+  Trajectory directory: /work1/ted/June2023/WithLigand/md_run3
+  Files used: md-06.dcd through the readable portion of md-30.dcd
+  Analyzed interval: 0.0-494.6 ns
+
+mZ944 run1
+  Trajectory directory: /work1/ted/June2023/WithmodLigand/md_run1
+  Files used: md-03.dcd through md-64.dcd
+  Analyzed interval: 0.0-591.984 ns
+
+mZ944 run2
+  Trajectory directory: /mnt/passport/work1/ted/June2023/WithmodLigand/md_run2
+  Files used: md-06.dcd through md-30.dcd
+  Analyzed interval: 0.0-499.8 ns
+
+mZ944 run3
+  Trajectory directory: /mnt/passport/work1/ted/June2023/WithmodLigand/md_run3
+  Files used: md-06.dcd through md-30.dcd
+  Analyzed interval: 0.0-499.8 ns
+
+Apo run1
+  Trajectory directory: /work1/ted/June2023/NoLig/md_run1
+  Files currently used: md-03.dcd through the readable portion of md-98.dcd
+  Current analyzed interval: 0.0-500.276 ns
+  The simulation is ongoing.
+
+Apo run2
+  Trajectory directory: /mnt/passport/work1/ted/June2023/NoLig/md_run2
+  Files used: md-06.dcd through md-30.dcd
+  Analyzed interval: 0.0-499.8 ns
+
+Apo run3
+  Trajectory directory: /mnt/passport/work1/ted/June2023/NoLig/md_run3
+  Files used: md-06.dcd through md-30.dcd
+  Analyzed interval: 0.0-499.8 ns
+
+For run2 and run3, md-31.dcd is outside the selected 0-500 ns RMSD
+window and was not required for the calculations.
+
+
+3. RUN1 DCD TIMING REGIMES
+--------------------------
+
+Z944 run1
+  md-01 through md-48: 5 ps per frame and 5 ns per DCD
+  md-49 through md-89: 10 ps per frame and 10 ns per DCD
+  Total nominal trajectory length: 650 ns
+  Last 600 ns: md-11 through md-89 (50-650 ns)
+
+mZ944 run1
+  md-03 through md-05: 2 ps per stored frame; variable file lengths
+  md-06 through md-64: 10 ps per stored frame; nominally 10 ns per DCD
+  md-31 contains 908 frames because of a power interruption.
+  md-32 continues directly from the final step of md-31.
+  Current physical span from md-03: approximately 592 ns
+
+Apo run1
+  md-03 through md-61: 2 ps per frame and 1 ns per DCD
+  md-62 through md-89: 10 ps per frame and 10 ns per DCD
+  md-90 onward: 100 ps per frame and 20 ns per complete DCD
+  md-72 contains one saved frame, followed by an approximately 10 ns
+    interval for which trajectory coordinates are unavailable.
+  md-83, md-84, and md-85 form a continuous split restart sequence.
+  md-98 currently contains 170 frames and is incomplete.
+  Current readable endpoint from md-03: 500.276 ns
+
+
+4. PROTEIN SEGMENTS AND RESIDUE RANGES
+--------------------------------------
+
+Segment A: residues 210-397
+Segment B: residues 863-968
+Segment C: residues 1388-1516
+Segment D: residues 1717-1832
+
+S5 residues
+  210-233, 864-886, 1389-1410, 1716-1742
+
+S6 residues
+  370-397, 939-968, 1489-1516, 1802-1832
+
+Selectivity-filter residues
+  351-357, 919-926, 1459-1466, 1776-1782
+
+Pore helix 1 residues
+  340-350, 908-918, 1448-1458, 1765-1775
+
+Pore helix 2 residues
+  358-368, 927-937, 1467-1477, 1783-1793
+
+
+5. STRUCTURAL ALIGNMENT SELECTION
+---------------------------------
+
+All trajectory frames are aligned using transmembrane-domain alpha-carbon
+(C-alpha) atoms from these residues:
+
+  210-233, 864-886, 1389-1410, 1716-1742,
+  340-397, 908-968, 1448-1516, 1764-1832
+
+Each RMSD calculation uses one common reference: frame 0 of the first DCD
+included in that analysis.
+
+
+6. BINDING-POCKET RESIDUES
+--------------------------
+
+384, 387, 388, 391,
+868, 872, 875, 876,
+916, 917, 918, 920, 921, 922,
+948, 950, 951, 952, 953, 955, 956, 957, 959, 960,
+1462, 1495, 1498, 1499, 1502, 1505, 1506, 1509, 1510,
+1816, 1819, 1820, 1823, 1824
+
+
+7. RMSD QUANTITIES
+------------------
+
+Calculated for all systems:
+  - Transmembrane-domain backbone RMSD
+  - S6 backbone RMSD
+  - Selectivity-filter backbone RMSD
+  - Binding-pocket backbone RMSD
+  - Whole-protein backbone RMSD
+
+Additionally calculated for Z944 and mZ944:
+  - DZR heavy-atom RMSD
+
+The apo system contains no ligand and therefore has no DZR RMSD.
+
+
+8. RMSD ANALYSES COMPLETED
+--------------------------
+
+RMSD analysis has been completed for all three replicas of the Z944,
+mZ944, and apo systems. Values below are mean +/- SD in angstroms and
+are rounded to two decimal places.
+
+System/run    SF RMSD       Pocket RMSD   Protein RMSD   DZR RMSD
+Z944 run1     0.90 +/- 0.14 0.90 +/- 0.11 2.51 +/- 0.53 2.72 +/- 0.58
+Z944 run2     1.02 +/- 0.19 0.91 +/- 0.13 2.55 +/- 0.45 2.71 +/- 0.81
+Z944 run3     1.29 +/- 0.11 0.85 +/- 0.09 2.88 +/- 0.48 3.21 +/- 0.50
+mZ944 run1    1.08 +/- 0.14 0.73 +/- 0.07 2.59 +/- 0.47 5.36 +/- 0.57
+mZ944 run2    1.19 +/- 0.19 0.96 +/- 0.16 2.42 +/- 0.28 2.78 +/- 0.52
+mZ944 run3    1.06 +/- 0.13 0.86 +/- 0.09 2.62 +/- 0.43 3.04 +/- 0.73
+Apo run1      1.25 +/- 0.16 0.94 +/- 0.10 3.00 +/- 0.48 not applicable
+Apo run2      0.99 +/- 0.12 0.83 +/- 0.12 1.93 +/- 0.29 not applicable
+Apo run3      1.15 +/- 0.11 0.94 +/- 0.09 2.37 +/- 0.29 not applicable
+
+Additional RMSD quantities present in the output files:
+  - Transmembrane-domain backbone RMSD
+  - S6 backbone RMSD
+
+RMSD output files
+  Z944 run1:
+    rmsd_run1_50_650ns.dat
+    rmsd_run1_50_650ns.png
+    rmsd_run1_50_650ns_summary.txt
+  Z944 run2:
+    rmsd_run2_0_500ns.dat
+    rmsd_run2_0_500ns.png
+    rmsd_run2_0_500ns_summary.txt
+  Z944 run3:
+    rmsd_run3_0_500ns.dat
+    rmsd_run3_0_500ns.png
+    rmsd_run3_0_500ns_summary.txt
+  mZ944 run1-run3:
+    rmsd_mZ944_run1_0_600ns.*
+    rmsd_mZ944_run2_0_500ns.*
+    rmsd_mZ944_run3_0_500ns.*
+  Apo run1-run3:
+    rmsd_apo_run1_0_600ns.*
+    rmsd_apo_run2_0_500ns.*
+    rmsd_apo_run3_0_500ns.*
+
+All RMSD output files are located in:
+  /work1/ted/June2023/WithLigand/analysis_replicas
+
+Important readable endpoints used by the RMSD calculations:
+  Z944 run2 and run3: 494.600 ns
+  mZ944 run2 and run3: 499.800 ns
+  Apo run2 and run3: 499.800 ns
+  Apo run1: 500.276 ns (data available at the time of analysis)
+
+
+9. WATER-MEDIATED INTERACTION ANALYSIS COMPLETED
+------------------------------------------------
+
+System analyzed:
+  Z944 runs 1, 2, and 3
+
+Definition:
+  A single-water bridge is present when the same water molecule forms
+  a hydrogen bond with DZR and a protein residue in the same sampled
+  frame.
+
+Hydrogen-bond criteria:
+  Donor-acceptor distance <= 3.5 angstrom
+  D-H...A angle >= 120 degrees
+
+Ligand atoms included:
+  Donors: N2 and N3
+  Acceptors: N1, O1, and O2
+
+Run1
+  DCD files: md-59.dcd through md-89.dcd
+  Physical interval: 302.0-612.0 ns
+  Native frame interval: 0.01 ns
+  Sampling stride: 10 frames (0.10 ns)
+  Sampled frames: 3,100
+  Frames with at least one bridge: 2,713
+  Any-bridge occupancy: 87.52%
+
+Run2
+  DCD files: md-16.dcd through md-30.dcd
+  Physical interval: 200.0-497.0 ns
+  Native frame interval: 0.02 ns
+  Sampling stride: 10 frames (0.20 ns)
+  Sampled frames: 1,486
+  Frames with at least one bridge: 1,440
+  Any-bridge occupancy: 96.90%
+
+Run3
+  DCD files: md-16.dcd through md-30.dcd
+  Physical interval: 200.0-497.0 ns
+  Native frame interval: 0.02 ns
+  Sampling stride: 10 frames (0.20 ns)
+  Sampled frames: 1,486
+  Frames with at least one bridge: 1,359
+  Any-bridge occupancy: 91.45%
+
+Leading residue-water-DZR bridge occupancies:
+
+Residue       Run1     Run2     Run3
+Ser383        42.90%   62.38%   33.51%
+Asn957        52.29%   27.59%   18.51%
+Thr921         0.81%   35.06%   49.60%
+Lys1462       41.19%   39.70%   24.23%
+
+Run1 result directory:
+  /work1/ted/June2023/WithLigand/md_run1/analyze/water-mediated/results
+
+Run2 and run3 result directories:
+  /work1/ted/June2023/WithLigand/analysis_replicas/water_bridges/Z944/run2
+  /work1/ted/June2023/WithLigand/analysis_replicas/water_bridges/Z944/run3
+
+Three-run comparison:
+  /work1/ted/June2023/WithLigand/analysis_replicas/water_bridges/Z944/comparison
+  /work1/ted/June2023/WithLigand/analysis_replicas/water_bridges/Z944/three_run_tables
+
+Representative simultaneous three-residue water-bridge snapshot:
+  System/run: Z944 run3
+  Time: 273.8 ns
+  DCD/frame: md-19.dcd, frame 690
+  Included bridges: Ser383-water-DZR, Asn957-water-DZR, and
+    Lys1462-water-DZR
+  Included structure: complete Ser383, Asn957, Lys1462, DZR, and
+    three distinct TIP3 bridging waters
+  Snapshot directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/water_bridges/Z944/representative_snapshot_three_residues
+
+
+10. PROLIF PROTEIN-LIGAND CONTACT ANALYSES COMPLETED
+----------------------------------------------------
+
+Systems analyzed:
+  Z944 runs 1, 2, and 3
+  mZ944 runs 1, 2, and 3
+
+The apo system has no ligand and is therefore not applicable.
+
+General method:
+  Software: ProLIF 2.2.0 with MDAnalysis 2.10.0
+  Interaction set: ProLIF default fingerprint
+  Frame stride: 300 trajectory frames
+  Outputs: full binary fingerprint table, interaction-frequency table,
+    top-20 occupancy plot, interactive ligand-interaction network,
+    sampled-frame/time table, and text summary
+
+Z944 run1
+  DCD files: md-58.dcd through md-89.dcd
+  Frames analyzed: 107
+  Frame stride: 300
+  Original result directory:
+    /work1/ted/June2023/WithLigand/md_run1/analyze/ProLif/output
+
+Z944 run2
+  DCD files: md-06.dcd through md-30.dcd
+  Readable frames at final ProLIF analysis: 24,915
+  Nominal interval: 0-498.28 ns
+  Frames analyzed: 84
+  Frame stride: 300 (6.0 ns between sampled frames)
+  Result directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/prolif/Z944/run2
+
+Z944 run3
+  DCD files: md-06.dcd through md-30.dcd
+  Readable frames at final ProLIF analysis: 24,916
+  Nominal interval: 0-498.30 ns
+  Frames analyzed: 84
+  Frame stride: 300 (6.0 ns between sampled frames)
+  Result directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/prolif/Z944/run3
+
+mZ944 run1
+  DCD files: md-35.dcd through md-64.dcd
+  Analyzed window: final 300.0 ns
+  Total frames in selected window: 30,001
+  Frames analyzed: 101
+  Frame stride: 300 (3.0 ns between sampled frames)
+  Result directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/prolif/mZ944/run1
+
+mZ944 run2
+  DCD files: md-06.dcd through md-30.dcd
+  Total frames: 25,001
+  Nominal interval: 0-500.00 ns
+  Frames analyzed: 84
+  Frame stride: 300 (6.0 ns between sampled frames)
+  Result directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/prolif/mZ944/run2
+
+mZ944 run3
+  DCD files: md-06.dcd through md-30.dcd
+  Total frames: 25,001
+  Nominal interval: 0-500.00 ns
+  Frames analyzed: 84
+  Frame stride: 300 (6.0 ns between sampled frames)
+  Result directory:
+    /work1/ted/June2023/WithLigand/analysis_replicas/prolif/mZ944/run3
+
+Important interpretation:
+  "Any-contact occupancy" is the percentage of sampled frames in which
+  a residue forms at least one ProLIF-defined interaction with DZR.
+  Individual interaction-type occupancies must not be added because
+  hydrophobic, van der Waals, hydrogen-bond, pi-stacking, or cation-pi
+  interactions can occur simultaneously in the same frame.
+
+Leading reproducible patterns:
+  Z944:
+    Phe956 is highly persistent in all three runs.
+    Asn952 is especially persistent in runs 2 and 3.
+    Lys1462 becomes prominent in run3.
+  mZ944:
+    Thr921 and Phe956 form a recurring Domain II interaction core.
+    Lys1462 is dominant in runs 1 and 3.
+  Overall:
+    Domain II forms the conserved interaction hotspot, with
+    replica-dependent redistribution toward Domain III residues.
+
+Reusable ProLIF analysis script:
+  /work1/ted/June2023/WithLigand/analysis_replicas/run_prolif_replicas.py
+
+Three-replica Z944-versus-mZ944 ProLIF alluvial comparison:
+  /work1/ted/June2023/WithLigand/analysis_replicas/prolif/Z944_vs_mZ944_alluvial
+
+Alluvial ranking definition:
+  Residues were ranked independently for Z944 and mZ944 using the
+  arithmetic mean of their any-contact occupancies in runs 1-3.
+  Each replica therefore contributes equally. The dominant
+  interaction is the interaction type with the largest three-run
+  mean occupancy. Interaction-type occupancies are not additive.
+
+Alluvial figures:
+  prolif_alluvial_Z944_vs_mZ944.png
+  prolif_alluvial_Z944_vs_mZ944.pdf
+  prolif_alluvial_Z944_vs_mZ944.svg
+
+Alluvial source tables and caption:
+  top15_three_replica_residue_contacts.csv
+  three_replica_residue_summary.csv
+  three_replica_interaction_summary.csv
+  residue_any_contact_by_run.csv
+  interaction_occupancy_by_run.csv
+  interaction_complete_by_run.csv
+  figure_caption.txt
+
+Reusable alluvial plotting script:
+  plot_prolif_alluvial_comparison.py
+
+
+11. CURRENT ANALYSIS STATUS
+---------------------------
+
+Completed:
+  - RMSD for Z944, mZ944, and apo runs 1-3
+  - Z944 water-mediated interactions for runs 1-3
+  - Z944 three-run water-bridge comparison
+  - Representative Z944 snapshot containing simultaneous water bridges
+    to Ser383, Asn957, and Lys1462, with PDB and PSF output
+  - ProLIF protein-ligand contacts for Z944 and mZ944 runs 1-3
+  - MM/GBSA for Z944 and mZ944 runs 1-3
+  - Per-residue MM/GBSA decomposition for Z944 and mZ944 runs 2-3
+  - Ligand-to-pocket and ligand-to-selectivity-filter COM distances
+    for Z944 and mZ944 runs 1-3
+  - Seven ligand-dihedral timelines and distributions for Z944 and
+    mZ944 runs 1-3
+
+Not yet completed for all replicas in this analysis directory:
+  - RMSF
+  - Water-mediated interactions for mZ944
+
+
+12. MM/GBSA BINDING-ENERGY ANALYSES COMPLETED
+---------------------------------------------
+
+Systems analyzed:
+  Z944 runs 1, 2, and 3
+  mZ944 runs 1, 2, and 3
+
+Run2 and run3 trajectory window:
+  DCD files: md-16.dcd through md-30.dcd
+  Nominal physical interval: 200-500 ns
+  Native frame interval: 0.020 ns
+  Sampling stride: 25 frames
+  Snapshot interval: 0.500 ns
+  Prepared snapshots per replica: 600
+  Reported energy frames per replica: 599
+  Reported time interval: 200.5-499.5 ns
+
+The frame-0 energy is excluded to reproduce the convention used by the
+run1 energy-extraction scripts.
+
+Energy method:
+  Engine for run2/run3: NAMD 3.0.2 Linux multicore (CPU)
+  Implicit solvent: NAMD GBIS
+  Solvent dielectric: 78.5
+  Ion concentration: 0.3 M
+  GBIS beta: 0.8
+  Alpha cutoff: 15 angstrom
+  SASA: enabled
+  Surface tension: 0.00542 kcal mol^-1 angstrom^-2
+  Switching distance: 15 angstrom
+  Nonbonded cutoff: 16 angstrom
+  Pair-list distance: 18 angstrom
+  Temperature setting: 298 K
+  Entropy: not calculated
+
+Binding-energy definition:
+  Ebind_ELEC = ELECT(complex) - ELECT(protein) - ELECT(ligand)
+  Ebind_VDW = VDW(complex) - VDW(protein) - VDW(ligand)
+  Ebind_TOTAL = Ebind_ELEC + Ebind_VDW
+
+Mean +/- temporal SD (kcal/mol):
+
+System/run    Ebind_ELEC       Ebind_VDW         Ebind_TOTAL
+Z944 run1     12.384 +/- 1.576 -36.716 +/- 2.762 -24.332 +/- 2.950
+Z944 run2     11.722 +/- 2.494 -35.523 +/- 3.000 -23.801 +/- 3.328
+Z944 run3     12.504 +/- 1.543 -34.268 +/- 3.281 -21.764 +/- 3.247
+mZ944 run1     6.119 +/- 3.429 -27.931 +/- 2.946 -21.813 +/- 3.655
+mZ944 run2     7.366 +/- 2.281 -32.080 +/- 2.670 -24.714 +/- 2.751
+mZ944 run3    11.618 +/- 1.780 -28.132 +/- 3.051 -16.514 +/- 3.302
+
+Mean +/- SD among the three run means (kcal/mol):
+
+System   Ebind_ELEC       Ebind_VDW         Ebind_TOTAL
+Z944     12.204 +/- 0.421 -35.503 +/- 1.224 -23.299 +/- 1.356
+mZ944     8.368 +/- 2.883 -29.381 +/- 2.339 -21.014 +/- 4.158
+
+Run2/run3 result directories:
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/Z944/run2
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/Z944/run3
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/mZ944/run2
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/mZ944/run3
+
+Three-run comparison:
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/three_run_comparison
+
+Reusable scripts:
+  mmgbsa_prepare_replicas.tcl
+  mmgbsa_cpx.conf
+  mmgbsa_prot.conf
+  mmgbsa_lig.conf
+  analyze_mmgbsa_replicas.py
+  compile_mmgbsa_three_runs.py
+
+
+13. PER-RESIDUE MM/GBSA DECOMPOSITION COMPLETED
+-----------------------------------------------
+
+Systems analyzed:
+  Z944 runs 2 and 3
+  mZ944 runs 2 and 3
+
+Trajectory sampling:
+  The same prepared 200-500 ns trajectories used for the total
+  MM/GBSA calculations were analyzed.
+  Reported frames per residue: 599
+  Reported time interval: 200.5-499.5 ns
+  Snapshot interval: 0.500 ns
+  Protein residues evaluated per replica: 503
+
+Method:
+  The run1 pairwise residue-ligand protocol was reproduced. For each
+  protein residue and frame:
+    DECOMP_ELEC = ELECT(residue+DZR) - ELECT(residue) - ELECT(DZR)
+    DECOMP_VDW = VDW(residue+DZR) - VDW(residue) - VDW(DZR)
+    DECOMP_TOTAL = DECOMP_ELEC + DECOMP_VDW
+  Energies are in kcal/mol. Negative values indicate favorable
+  residue-ligand contributions. The reported SD is the temporal SD.
+  This pairwise GBIS decomposition is not strictly additive; sums of
+  residue values need not equal the whole-complex binding energy.
+
+Leading favorable mean total contributions (kcal/mol):
+  Z944 run2:
+    Phe956 -4.433; Leu920 -2.916; Asn952 -2.914; Thr921 -1.996
+  Z944 run3:
+    Phe956 -3.978; Asn952 -2.153; Thr921 -2.064; Lys1462 -2.062
+  mZ944 run2:
+    Phe956 -4.349; Thr921 -2.349; Asn952 -1.946; Ile387 -1.936
+  mZ944 run3:
+    Phe956 -3.175; Thr921 -2.387; Gln922 -1.190; Asn952 -1.162
+
+Result directories:
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/Z944/run2/per_residue
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/Z944/run3/per_residue
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/mZ944/run2/per_residue
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/mZ944/run3/per_residue
+
+Each result directory contains:
+  per_residue_energy.csv
+  per_residue_statistics.csv
+  per_residue_ranked.csv
+  summary.txt
+  top20_summary.txt
+  top20_per_residue_decomposition.png
+
+Reusable scripts:
+  mmgbsa_per_residue.tcl
+  summarize_mmgbsa_per_residue.py
+
+Z944-versus-mZ944 graphical comparison:
+  /work1/ted/June2023/WithLigand/analysis_replicas/mmgbsa/Z944_vs_mZ944_comparison
+
+Comparison figures:
+  overall_energy_comparison.png/.pdf/.svg
+    Overall VDW, electrostatic, and total energies for run1-run3 and
+    the three-run mean. Individual-run error bars are temporal SDs;
+    mean error bars are SDs among the three replica means.
+  per_residue_energy_comparison.png/.pdf/.svg
+    Three-run mean VDW, electrostatic, and total contributions for the
+    union of the 12 most favorable residues in either system. Error
+    bars are SDs among replica means.
+
+Comparison data and captions:
+  overall_energy_plot_data.csv
+  per_residue_all_runs.csv
+  per_residue_three_run_summary.csv
+  selected_residues.csv
+  figure_captions.txt
+
+Reusable comparison script:
+  plot_mmgbsa_system_comparison.py
+
+
+14. LIGAND CENTER-OF-MASS DISTANCE ANALYSIS COMPLETED
+-----------------------------------------------------
+
+Systems analyzed:
+  Z944 runs 1-3
+  mZ944 runs 1-3
+
+Analysis window and sampling:
+  Final 300 ns of each replica
+  Sampling interval: 0.500 ns
+  Samples per replica: 600
+  Samples per system in pooled violin: 1800
+
+Definitions reproduced from the original run1 analysis:
+  Ligand:
+    resname DZR, mass-weighted center of mass
+  Blocker-binding pocket:
+    protein backbone atoms of residues
+    384 387 388 391 868 872 875 876 916 917 918 920 921 922
+    948 950 951 952 953 955 956 957 959 960 1816 1819 1820
+    1823 1824 1462 1495 1498 1499 1502 1505 1506 1509 1510
+  Selectivity filter:
+    protein backbone atoms of residues
+    351-357, 919-926, 1459-1466, and 1776-1782
+
+Pooled mean +/- temporal SD (angstrom):
+
+System   Pocket-to-ligand   Filter-to-ligand
+Z944      3.012 +/- 0.632   11.139 +/- 0.578
+mZ944     4.500 +/- 1.294   10.232 +/- 1.313
+
+Important replica dependence:
+  mZ944 run1:
+    Pocket 6.224 +/- 0.459; filter 8.540 +/- 0.312 angstrom
+  mZ944 run2:
+    Pocket 3.612 +/- 0.412; filter 11.555 +/- 0.386 angstrom
+  mZ944 run3:
+    Pocket 3.665 +/- 0.424; filter 10.601 +/- 0.419 angstrom
+  Thus, the displaced mZ944 geometry shown by run1 is not reproduced
+  to the same extent in runs 2 and 3.
+
+Result directory:
+  /work1/ted/June2023/WithLigand/analysis_replicas/com_distance/Z944_vs_mZ944
+
+Figures:
+  com_distance_violin_pooled.png/.pdf/.svg
+  com_distance_violin_by_replica.png/.pdf/.svg
+
+Data, statistics, and caption:
+  com_distances_all_replicas_wide.csv
+  com_distances_all_replicas_long.csv
+  com_distance_statistics_by_run.csv
+  com_distance_statistics_pooled.csv
+  figure_caption.txt
+
+Reusable scripts:
+  com_distance_prepared.tcl
+  plot_com_distance_violins.py
+
+
+15. LIGAND DIHEDRAL DYNAMICS COMPLETED
+--------------------------------------
+
+Systems analyzed:
+  Z944 runs 1-3
+  mZ944 runs 1-3
+
+Analysis window and sampling:
+  Final 300 ns of each replica
+  Sampling interval: 0.500 ns
+  Samples per replica: 600
+  Samples per system in pooled distributions: 1800
+
+Seven dihedral definitions reproduced from Figure 5:
+  chi1: C9-N3-C8-C7
+  chi2: N3-C8-C7-N1
+  chi3: C8-C7-N1-C4
+  chi4: C3-C1-C6-N2
+  chi5: C1-C6-N2-C10
+  chi6: C6-N2-C10-C14
+  chi7: N2-C10-C14-C16
+
+Three-replica pooled circular mean +/- circular SD (degrees):
+
+Dihedral    Z944                 mZ944
+chi1        178.88 +/- 10.75    -179.16 +/- 11.44
+chi2        -73.30 +/- 78.77      26.67 +/- 99.06
+chi3        120.93 +/- 25.88      99.58 +/- 21.60
+chi4       -135.94 +/- 55.21     179.50 +/- 19.41
+chi5       -159.43 +/- 34.79    -139.74 +/- 23.11
+chi6       -176.87 +/-  8.62    -179.94 +/-  9.16
+chi7       -179.89 +/- 16.62    -171.58 +/- 53.18
+
+Leading conformational patterns:
+  chi1 and chi6 remain tightly centered near the trans boundary in
+  both systems.
+  chi2 is the most heterogeneous torsion in both systems and shows
+  marked replica dependence, especially for mZ944.
+  chi3 is relatively constrained but its pooled center shifts from
+  approximately 121 degrees in Z944 to 100 degrees in mZ944.
+  Z944 has greater pooled variability in chi4 and chi5.
+  mZ944 has greater pooled variability in chi7, driven primarily by
+  alternative states sampled in runs 1 and 3.
+
+Result directory:
+  /work1/ted/June2023/WithLigand/analysis_replicas/ligand_dihedrals/Z944_vs_mZ944
+
+Figures:
+  dihedral_timelines_all_replicas.png/.pdf/.svg
+  dihedral_distributions_pooled.png/.pdf/.svg
+  dihedral_distributions_by_replica.png/.pdf/.svg
+
+Data, statistics, and caption:
+  dihedral_angles_all_replicas.csv
+  dihedral_circular_statistics_by_run.csv
+  dihedral_circular_statistics_pooled.csv
+  figure_caption.txt
+
+Reusable scripts:
+  ligand_dihedrals_prepared.tcl
+  plot_ligand_dihedral_dynamics.py

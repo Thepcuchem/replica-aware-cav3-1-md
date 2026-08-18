@@ -1,0 +1,21 @@
+{
+  "feature_directory": "/mnt/passport/work1/ted/June2023/Deeplearning/features/common_ca_distances",
+  "frames_per_replica": 1501,
+  "total_frames": 13509,
+  "distance_features": 2016,
+  "pca_components": 50,
+  "pca_explained_variance_ratio_first_five": [
+    0.14840403199195862,
+    0.09497378766536713,
+    0.08775396645069122,
+    0.07271234691143036,
+    0.058413222432136536
+  ],
+  "mean_frame_holdout_balanced_accuracy": 0.3870752831445703,
+  "trajectory_holdout_accuracy": 0.3333333333333333,
+  "contact_map_cutoff_A": 8.0,
+  "mean_contact_map_frame_holdout_balanced_accuracy": 0.25782811459027316,
+  "contact_map_trajectory_holdout_accuracy": 0.2222222222222222,
+  "validation_design": "Each fold holds out run N for all three systems and trains on the other six trajectories.",
+  "interpretation_limit": "Frame observations are temporally correlated; trajectory-level predictions are the primary generalization check."
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Replica-Aware Validation of Machine Learning for Reliable Interpretation of Molecular Dynamics Trajectories: Cav3.1 Reproducibility Package",
+  "description": "Reproducibility package accompanying the manuscript Replica-Aware Validation of Machine Learning for Reliable Interpretation of Molecular Dynamics Trajectories: A Case Study of the Cav3.1 Channel. It contains analysis code, processed structural features from three independent replicas of apo, Z944-bound, and mZ944-bound Cav3.1, initial structures, one-frame example trajectories, representative NAMD and MM/GBSA configurations, compact auxiliary inputs, and validated result tables. Full production trajectories are available from the corresponding author upon reasonable request. Code is licensed under MIT; data and documentation are licensed under CC BY 4.0.",
+  "upload_type": "software",
+  "license": "MIT",
+  "version": "1.0.0",
+  "publication_date": "2026-08-16",
+  "creators": [
+    {"name": "Khoushab, Theodore Feisal", "affiliation": "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"},
+    {"name": "Boonamnaj, Panisak", "affiliation": "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand", "orcid": "0000-0002-7098-5138"},
+    {"name": "Lerttanakij, Pisit", "affiliation": "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"},
+    {"name": "Pandey, Ras B.", "affiliation": "School of Mathematics and Natural Sciences, University of Southern Mississippi, Hattiesburg, Mississippi 39406, United States", "orcid": "0000-0003-4233-8897"},
+    {"name": "Sompornpisut, Pornthep", "affiliation": "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand", "orcid": "0000-0002-8029-332X"}
+  ],
+  "keywords": ["Cav3.1", "Z944", "molecular dynamics", "machine learning", "replica validation", "conformational sampling", "protein-ligand interactions", "uncertainty quantification"],
+  "related_identifiers": [
+    {"identifier": "https://github.com/Thepcuchem/replica-aware-cav3-1-md", "relation": "isSupplementTo", "scheme": "url"}
+  ]
+}

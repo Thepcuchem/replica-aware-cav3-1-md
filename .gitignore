@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+gui/data/
+gui/local-results/
+gui/dist/
+systems/*/initial.pdb
+systems/*/initial.psf
+processed_data/common_ca_distances/
+*.tar.gz
+*.zip

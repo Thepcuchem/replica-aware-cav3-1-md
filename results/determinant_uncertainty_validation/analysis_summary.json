@@ -1,0 +1,15 @@
+{
+  "top_features_per_comparison": 25,
+  "block_length_ns": 10.0,
+  "complete_blocks_per_trajectory": 30,
+  "bootstrap_iterations": 2000,
+  "independent_replicas": 3,
+  "replica_t_degrees_of_freedom": 2,
+  "dual_uncertainty_supported_counts": {
+    "Z944_vs_Apo": 15,
+    "mZ944_vs_Apo": 10,
+    "mZ944_vs_Z944": 12
+  },
+  "interpretation": "Dual support requires every run's 10-ns block-bootstrap interval to exclude zero in the common direction and the across-replica t interval to exclude zero.",
+  "caveat": "Only three independent replicas are available; df=2 t intervals are wide and distribution-sensitive. Block bootstrap quantifies temporal uncertainty within runs, not biological-replica uncertainty."
+}

@@ -1,0 +1,19 @@
+{
+  "unique_protein_distances": 66,
+  "COM_frames_per_replica": 600,
+  "dihedral_frames_per_replica": 600,
+  "torsional_coupling_figure_selection": {
+    "relationships_per_system_and_dihedral": 1,
+    "minimum_phase_consistency": 0.75,
+    "selection_within_eligible_relationships": "Maximum minimum circular-linear strength across runs",
+    "interpretation": "Display rule for a descriptive phase-recurrence figure, not a hypothesis-test threshold"
+  },
+  "COM_sign_consistent_relationships": 60,
+  "strong_COM_relationships_min_abs_rho_0.2": 1,
+  "water_bridge_runs": [
+    2,
+    3
+  ],
+  "water_sign_consistent_relationships": 71,
+  "caveat": "Correlations are descriptive and temporally autocorrelated. COM and dihedral coupling require direction/phase consistency across all three replicas; water coupling currently covers Z944 runs 2 and 3 only."
+}

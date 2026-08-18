@@ -1,0 +1,23 @@
+{
+  "Z944_vs_Apo": {
+    "pairs_mapped": 25,
+    "residues_mapped": 27,
+    "reference_pdb": "/work1/ted/June2023/Deeplearning/z944/z944_dl.pdb",
+    "positive_B_factor": "net expansion",
+    "negative_B_factor": "net contraction"
+  },
+  "mZ944_vs_Apo": {
+    "pairs_mapped": 25,
+    "residues_mapped": 25,
+    "reference_pdb": "/work1/ted/June2023/Deeplearning/mz944/mz944_dl.pdb",
+    "positive_B_factor": "net expansion",
+    "negative_B_factor": "net contraction"
+  },
+  "mZ944_vs_Z944": {
+    "pairs_mapped": 25,
+    "residues_mapped": 20,
+    "reference_pdb": "/work1/ted/June2023/Deeplearning/mz944/mz944_dl.pdb",
+    "positive_B_factor": "net expansion",
+    "negative_B_factor": "net contraction"
+  }
+}

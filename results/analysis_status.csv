@@ -1,0 +1,11 @@
+analysis,label,scientific_status,summary_available
+common_protein_baseline,Single-trajectory common-protein baseline,exploratory,True
+replica_rmsd_validation,Nine-replica RMSD negative control,validated negative,True
+nine_replica_distance_validation,Nine-replica distance/contact validation,validated negative,True
+hierarchical_state_discovery,Hierarchical candidate-state recurrence,validated negative,True
+reproducible_distance_determinants,Replica-reproducible distance determinants,supported,True
+mechanistic_evidence_integration,Mechanistic evidence integration,supported,True
+frame_matched_ligand_coupling,Frame-matched COM/dihedral/water coupling,descriptive,True
+frame_matched_prolif_coupling,Frame-matched ProLIF coupling,validated weak/negative,True
+structural_determinant_mapping,Structure and network mapping,visualization,True
+determinant_uncertainty_validation,Temporal and replica uncertainty validation,supported,True

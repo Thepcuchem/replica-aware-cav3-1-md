@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or dataset, please cite the archived release."
+title: "Replica-Aware Validation of Machine Learning for Reliable Interpretation of Molecular Dynamics Trajectories: Cav3.1 Reproducibility Package"
+type: software
+abstract: "Code, processed replica-level structural features, initial structures, example trajectories, configurations, and validated results for replica-aware machine-learning analysis of apo, Z944-bound, and mZ944-bound human Cav3.1 molecular dynamics trajectories."
+license: "MIT AND CC-BY-4.0"
+authors:
+  - family-names: "Khoushab"
+    given-names: "Theodore Feisal"
+    affiliation: "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"
+  - family-names: "Boonamnaj"
+    given-names: "Panisak"
+    affiliation: "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"
+    orcid: "https://orcid.org/0000-0002-7098-5138"
+  - family-names: "Lerttanakij"
+    given-names: "Pisit"
+    affiliation: "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"
+  - family-names: "Pandey"
+    given-names: "Ras B."
+    affiliation: "School of Mathematics and Natural Sciences, University of Southern Mississippi, Hattiesburg, Mississippi 39406, United States"
+    orcid: "https://orcid.org/0000-0003-4233-8897"
+  - family-names: "Sompornpisut"
+    given-names: "Pornthep"
+    affiliation: "Center of Excellence in Computational Chemistry, Department of Chemistry, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand"
+    orcid: "https://orcid.org/0000-0002-8029-332X"
+    email: "pornthep.s@chula.ac.th"
+version: "1.0.0"
+date-released: "2026-08-16"
+repository-code: "https://github.com/Thepcuchem/replica-aware-cav3-1-md"
+doi: "10.5281/zenodo.REPLACE_WITH_RECORD_ID"
+keywords:
+  - Cav3.1
+  - Z944
+  - molecular dynamics
+  - machine learning
+  - replica validation
+  - conformational sampling
+  - protein-ligand interactions
+  - uncertainty quantification

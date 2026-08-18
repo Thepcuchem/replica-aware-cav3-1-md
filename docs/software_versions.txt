@@ -1,0 +1,53 @@
+Software versions used for the deposited analysis
+=================================================
+
+Versions below were recovered from simulation and analysis logs, generated
+figure metadata, and the local Python environments used for the deposited
+workflows.
+
+Molecular dynamics and Tcl analysis
+-----------------------------------
+
+VMD: 1.9.3
+
+NAMD production simulations:
+  - Z944 run 1: 2.11 (Linux-x86_64-multicore-CUDA)
+  - mZ944 run 1: 2.14 (Linux-x86_64-multicore-CUDA)
+  - apo run 1: 2.11 (Linux-x86_64-multicore-CUDA)
+  - Z944, mZ944, and apo runs 2 and 3: 3.0.2
+    (Linux-x86_64-multicore-CUDA)
+
+NAMD MM/GBSA calculations:
+  - Original Z944 run-1 calculation: 2.14
+    (Linux-x86_64-multicore-CUDA)
+  - Replica run-2 and run-3 calculations: 3.0.2
+    (Linux-x86_64-multicore)
+
+Python aggregation and plotting environment
+-------------------------------------------
+
+Python: 3.10.12
+NumPy: 2.2.4
+pandas: 2.2.3
+Matplotlib: 3.10.1
+MDAnalysis: 2.9.0
+
+Python ProLIF interaction-analysis environment
+----------------------------------------------
+
+Python: 3.11.15
+NumPy: 2.4.6
+pandas: 3.0.3
+Matplotlib: 3.11.0
+MDAnalysis: 2.10.0
+ProLIF: 2.2.0
+RDKit: 2026.03.3
+
+Evidence notes
+--------------
+
+VMD 1.9.3 is reported directly by the RMSD and per-residue-analysis logs.
+NAMD versions are reported directly by the production and MM/GBSA output
+files. Matplotlib 3.10.1 and 3.11.0 are embedded in the corresponding
+generated figure files. The ProLIF and MDAnalysis versions agree with the
+completed-analysis record.

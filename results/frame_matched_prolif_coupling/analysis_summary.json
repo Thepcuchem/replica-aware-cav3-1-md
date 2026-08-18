@@ -1,0 +1,12 @@
+{
+  "protein_distances_screened": 66,
+  "contact_definition": "Any ProLIF interaction type for the endpoint residue",
+  "occupancy_filter": [
+    0.05,
+    0.95
+  ],
+  "three_replica_testable_relationships": 27,
+  "sign_consistent_relationships": 7,
+  "strong_relationships_min_abs_rho_0.2": 0,
+  "caveat": "ProLIF sampling is sparse (approximately 3-6 ns). Correlations are descriptive and limited to contacts with 5-95% occupancy in every run."
+}
