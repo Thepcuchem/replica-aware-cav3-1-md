@@ -11,8 +11,8 @@
    in `LICENSES.md`.
 6. Publish the Zenodo draft only after checking title, creators, affiliations,
    ORCIDs, licenses, file inventory, and checksums.
-7. Replace the Zenodo DOI placeholders in the repository and manuscript with
-   the minted version DOI. Use the version DOI for the submitted manuscript.
+7. Use the version DOI `10.5281/zenodo.21990270` in the repository and
+   submitted manuscript.
 
 The archive intentionally excludes all production DCDs. Only three one-frame
 example DCDs are included, totaling approximately 9 MB.

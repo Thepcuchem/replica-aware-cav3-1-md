@@ -1,7 +1,7 @@
 # GitHub and Zenodo release checklist
 
 1. Review `README.md`, `CITATION.cff`, `.zenodo.json`, and `LICENSES.md`.
-2. Replace the Zenodo DOI placeholder after reserving the deposition DOI.
+2. Confirm the reserved Zenodo DOI in `CITATION.cff` and `README.md`.
 3. Confirm the archive inventory and sizes in `MANIFEST.tsv`.
 4. Confirm that only the three one-frame example DCDs are present.
 5. Run the smoke test and package validator.

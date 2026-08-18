@@ -5,6 +5,8 @@ Reproducibility package for the manuscript:
 > *Replica-Aware Validation of Machine Learning for Reliable Interpretation of
 > Molecular Dynamics Trajectories: A Case Study of the Cav3.1 Channel*
 
+Archived release: [https://doi.org/10.5281/zenodo.21990270](https://doi.org/10.5281/zenodo.21990270)
+
 The study compares apo, Z944-bound, and mZ944-bound human Cav3.1 pore-domain
 simulations. It tests whether apparent global conformational separation survives
 whole-replica validation, then identifies local residue-distance changes that are

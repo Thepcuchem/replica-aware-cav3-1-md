@@ -1,11 +1,11 @@
 .github/workflows/validate.yml	303
 .gitignore	180
 .zenodo.json	2384
-CITATION.cff	2201
+CITATION.cff	2187
 LICENSE	1161
 LICENSE-DATA	912
 LICENSES.md	588
-README.md	4548
+README.md	4650
 analysis_scripts/com_distance/com_distance_prepared.tcl	2805
 analysis_scripts/com_distance/plot_com_distance_violins.py	8445
 analysis_scripts/ligand_dihedrals/ligand_dihedrals_prepared.tcl	2325
@@ -39,9 +39,9 @@ docs/DATA_DICTIONARY.md	1622
 docs/DATA_INVENTORY.md	2347
 docs/DEPOSIT_READINESS.md	1334
 docs/MANUSCRIPT_INSERTIONS.md	1765
-docs/RELEASE_CHECKLIST.md	735
+docs/RELEASE_CHECKLIST.md	731
 docs/REPRODUCIBILITY.md	2783
-docs/ZENODO_DEPOSITION.md	973
+docs/ZENODO_DEPOSITION.md	915
 docs/all_systems_and_replicas_information.txt	23615
 docs/software_versions.txt	1517
 docs/summary_systems_and_completed_analyses.txt	6626
