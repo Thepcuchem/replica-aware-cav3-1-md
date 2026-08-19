@@ -1,66 +1,76 @@
-# ReplicaLab
+# ReplicaLab web application
 
-ReplicaLab is a user-interface prototype for a multi-replica molecular-dynamics analysis workbench.
+ReplicaLab is a local, browser-based interface for the analysis programs in
+`src/`. It runs on the user's computer: trajectory paths and unpublished inputs
+are not uploaded to a remote service.
 
-The core study model is:
+## Install and launch
 
-```text
-Study
-└── System or condition
-    └── Independent replica
-        └── Trajectory segments
-```
-
-The current interface demonstrates:
-
-- multi-system and multi-replica setup;
-- trajectory coverage and validation status;
-- common-window and equal-replica sampling;
-- structural, interaction, energetic, spatial, solvent, and conformational analysis modules;
-- system × replica job monitoring;
-- consensus results and replica-disagreement warnings;
-- responsive desktop and mobile layouts.
-
-Version 0.2 adds a local Python backend and the first executable analysis adapter:
-
-- persistent local system and replica configurations;
-- PSF/PDB path validation;
-- DCD discovery, header frame counts, duration estimates, and small-file warnings;
-- asynchronous job tracking;
-- VMD-driven, selection-based RMSD calculations;
-- per-replica RMSD CSV and JSON summary files.
-
-The ProLIF, water-bridge, MM/GBSA, COM-distance, dihedral, and RMSF cards remain interface previews until their adapters are connected.
-
-## Local preview
-
-Run the local application server:
+From the repository root:
 
 ```bash
-cd md-replica-workbench
-python3 server.py --host 127.0.0.1 --port 8766
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+./gui/run_gui.sh
 ```
 
-Then open `http://127.0.0.1:8766`.
+Open `http://127.0.0.1:8765`. To use another port, run
+`./gui/run_gui.sh --port 9000`. The server binds to localhost unless `--host`
+is supplied explicitly.
 
-The server must be used instead of `python3 -m http.server`; the latter serves
-the interface but does not provide trajectory validation or analysis APIs.
+## Available workflows
 
-## First RMSD workflow
+- distance-map PCA and replica-holdout ML validation;
+- hierarchical state discovery;
+- reproducible distance-determinant ranking;
+- block-bootstrap determinant uncertainty;
+- replica-aware RMSD validation;
+- ligand-geometry and ProLIF coupling;
+- mechanistic evidence integration;
+- structural determinant mapping; and
+- common-landscape feature extraction and clustering.
 
-1. Open **Systems** and select **Add system**.
-2. Enter a system name and absolute PSF/PDB paths.
-3. Enter one or more replica trajectory directories, DCD patterns, and physical
-   frame intervals.
-4. Validate and save the system.
-5. Open **Analyses**, select the saved system and replicas, and define the VMD
-   alignment and RMSD atom selections.
-6. Start RMSD and follow progress under **Jobs**.
+Every run receives a unique directory under `gui/local-results/`. The Jobs view
+shows status and logs; the Results view exposes generated files for download.
+The browser displays the exact command before launch.
 
-Local configuration and outputs are intentionally not committed:
+## Apply to another protein system
+
+The distance-based ML modules accept matrices with any number of frames and
+features. Prepare three conditions with three independent replicas per
+condition, using these canonical filenames:
 
 ```text
-data/projects.json
-data/jobs.json
-local-results/<job-id>/<replica-id>/
+apo_run1_common_ca_distances.npz
+apo_run2_common_ca_distances.npz
+apo_run3_common_ca_distances.npz
+z944_run1_common_ca_distances.npz
+z944_run2_common_ca_distances.npz
+z944_run3_common_ca_distances.npz
+mz944_run1_common_ca_distances.npz
+mz944_run2_common_ca_distances.npz
+mz944_run3_common_ca_distances.npz
 ```
+
+For another study, treat `apo`, `z944`, and `mz944` as the reference, condition
+A, and condition B slots. Each NPZ file must contain:
+
+- `distances`: frames by features, finite numerical values;
+- `feature_names`: one label per distance column; and
+- `time_ns`: one physical time value per frame.
+
+All nine files must use the same ordered feature definitions. Frame counts may
+differ between studies, but the current manuscript workflows expect matched
+sampling within a study. Cav3.1-specific structural mapping and mechanistic
+integration require adapting residue ranges and auxiliary table conventions in
+their source scripts.
+
+## Operational notes
+
+- `numpy`, `scipy`, `scikit-learn`, `pandas`, and `matplotlib` support ML and
+  statistical workflows.
+- `MDAnalysis` supports trajectory-based feature extraction.
+- VMD, NAMD, PyMOL, and ProLIF are optional and needed only for their associated
+  workflows.
+- Do not expose the server on a public network. The API accepts local paths.

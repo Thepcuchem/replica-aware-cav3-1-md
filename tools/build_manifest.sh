@@ -6,6 +6,8 @@ cd "$repo_dir"
 
 find . -type f \
   ! -path './.git/*' \
+  ! -path './gui/data/*' \
+  ! -path './gui/local-results/*' \
   ! -path '*/__pycache__/*' \
   ! -name '*.pyc' \
   ! -name 'MANIFEST.tsv' \
@@ -15,6 +17,8 @@ find . -type f \
 
 find . -type f \
   ! -path './.git/*' \
+  ! -path './gui/data/*' \
+  ! -path './gui/local-results/*' \
   ! -path '*/__pycache__/*' \
   ! -name '*.pyc' \
   ! -name 'SHA256SUMS' \

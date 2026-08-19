@@ -2,399 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1516">
-  <title>ReplicaLab — Multi-replica MD analysis</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ReplicaLab | MD analysis workstation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="Primary navigation">
-      <a class="brand" href="#" aria-label="ReplicaLab home">
-        <span class="brand-mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        <span>
-          <strong>ReplicaLab</strong>
-          <small>MD workbench</small>
-        </span>
-      </a>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">RL</span><div><strong>ReplicaLab</strong><small>MD analysis workstation</small></div></div>
+    <nav aria-label="Workspace">
+      <button class="nav-button active" data-view="workbench"><span>01</span>Workbench</button>
+      <button class="nav-button" data-view="jobs"><span>02</span>Jobs <b id="activeJobCount">0</b></button>
+      <button class="nav-button" data-view="results"><span>03</span>Results</button>
+      <button class="nav-button" data-view="setup"><span>04</span>Setup</button>
+    </nav>
+    <div class="engine-status" id="engineStatus"><i></i><div><strong>Connecting</strong><small>Local engine</small></div></div>
+    <a class="doi-link" href="https://doi.org/10.5281/zenodo.21990270" target="_blank" rel="noreferrer">Archived release<br><strong>10.5281/zenodo.21990270</strong></a>
+  </aside>
 
-      <nav class="nav-list">
-        <button class="nav-item active" data-view="overview">
-          <svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>
-          Overview
-        </button>
-        <button class="nav-item" data-view="systems">
-          <svg viewBox="0 0 24 24"><path d="M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm10 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM7 13a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm10-10a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg>
-          Systems
-          <span class="nav-count">3</span>
-        </button>
-        <button class="nav-item" data-view="analyses">
-          <svg viewBox="0 0 24 24"><path d="M5 3v18M5 17c3-8 5-8 7-3s4 3 7-7"/></svg>
-          Analyses
-        </button>
-        <button class="nav-item" data-view="jobs">
-          <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM9 9h6v6H9z"/></svg>
-          Jobs
-          <span class="status-dot"></span>
-        </button>
-        <button class="nav-item" data-view="results">
-          <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>
-          Results
-        </button>
-      </nav>
+  <main>
+    <header class="topbar">
+      <button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button>
+      <div><strong id="viewTitle">Analysis workbench</strong><small id="repositoryPath">Loading package path...</small></div>
+      <div class="dependency-strip" id="dependencyStrip"></div>
+    </header>
 
-      <div class="sidebar-section">
-        <p class="eyebrow">Active study</p>
-        <button class="study-switcher">
-          <span class="study-icon">Ca</span>
-          <span><strong>Example binding study</strong><small>3 systems · 9 replicas</small></span>
-          <svg viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
-        </button>
+    <section class="view active" id="workbench-view">
+      <div class="page-intro"><div><p class="eyebrow">Configure and run</p><h1>Analysis workbench</h1><p>Select a workflow, verify its inputs, and run it in an isolated result directory.</p></div><button class="secondary-button" id="useDefaultsButton">Restore package defaults</button></div>
+      <div class="workbench-grid">
+        <section class="catalog-panel">
+          <div class="filter-row"><label class="search-box"><span>⌕</span><input id="analysisSearch" type="search" placeholder="Find an analysis"></label><select id="groupFilter" aria-label="Filter by group"><option value="">All groups</option></select></div>
+          <div class="analysis-list" id="analysisList"><div class="loading-block"></div></div>
+        </section>
+        <section class="configuration-panel">
+          <div class="config-header"><span class="group-label" id="selectedGroup">Analysis</span><h2 id="selectedName">Select a workflow</h2><p id="selectedSummary">Choose an analysis from the catalog to configure its inputs.</p></div>
+          <form id="analysisForm"><div class="form-fields" id="formFields"></div></form>
+          <div class="output-note"><strong>Expected outputs</strong><p id="expectedOutputs">Output details appear after selecting a workflow.</p></div>
+          <div class="command-preview"><div><strong>Execution</strong><span>Outputs are never written into source data</span></div><code id="commandPreview">Select an analysis</code></div>
+          <div class="config-actions"><button class="secondary-button" id="validateButton" type="button">Validate inputs</button><button class="primary-button" id="runButton" type="button" disabled>Run analysis</button></div>
+        </section>
       </div>
+    </section>
 
-      <div class="sidebar-footer">
-        <div class="engine-state" id="engineState">
-          <span class="pulse"></span>
-          <div><strong>Analysis engine</strong><small id="engineStatus">Connecting…</small></div>
-        </div>
-        <button class="icon-button" title="Settings" aria-label="Settings">
-          <svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm8 4 2-1-2-4-2 1-2-1V5h-4v2L8 8 6 7l-2 4 2 1v2l-2 1 2 4 2-1 2 1v2h4v-2l2-1 2 1 2-4-2-1v-2Z"/></svg>
-        </button>
+    <section class="view" id="jobs-view">
+      <div class="page-intro"><div><p class="eyebrow">Execution history</p><h1>Jobs</h1><p>Monitor running workflows and inspect complete command logs.</p></div><button class="secondary-button" id="refreshJobsButton">Refresh</button></div>
+      <div class="job-table"><div class="table-head"><span>Workflow</span><span>Created</span><span>Status</span><span>Output</span><span></span></div><div id="jobList"></div></div>
+      <section class="log-panel" id="logPanel" hidden><div class="panel-heading"><div><span>Selected job</span><h2 id="logTitle">Run log</h2></div><button class="icon-button" id="closeLogButton" aria-label="Close log">×</button></div><pre id="logContent"></pre></section>
+    </section>
+
+    <section class="view" id="results-view">
+      <div class="page-intro"><div><p class="eyebrow">Generated artifacts</p><h1>Results</h1><p>Browse and download outputs from completed analyses.</p></div></div>
+      <div class="result-browser" id="resultBrowser"><div class="empty-state"><strong>No completed jobs yet</strong><span>Run an analysis to populate this view.</span></div></div>
+    </section>
+
+    <section class="view" id="setup-view">
+      <div class="page-intro"><div><p class="eyebrow">Portable by design</p><h1>Setup and input contract</h1><p>The local server keeps trajectories and unpublished data on this computer.</p></div></div>
+      <div class="setup-grid">
+        <article><span class="step-number">1</span><h2>Install</h2><code>python3 -m pip install -r requirements.txt</code><p>MDAnalysis is additionally required for trajectory feature extraction.</p></article>
+        <article><span class="step-number">2</span><h2>Launch</h2><code>python3 gui/server.py</code><p>Open <strong>http://127.0.0.1:8765</strong>. The default binding is local-only.</p></article>
+        <article><span class="step-number">3</span><h2>Adapt</h2><code>processed_data/common_ca_distances/</code><p>Supply nine compatible NPZ matrices or generate equivalent features for another three-condition, three-replica protein study.</p></article>
       </div>
-    </aside>
+      <div class="contract-panel"><h2>Processed feature contract</h2><div class="contract-grid"><div><strong>File naming</strong><code>apo_run1_common_ca_distances.npz</code></div><div><strong>Required arrays</strong><code>distances · feature_names · time_ns</code></div><div><strong>Replica policy</strong><code>3 conditions × 3 independent replicas</code></div><div><strong>Output isolation</strong><code>gui/local-results/&lt;job-id&gt;/</code></div></div></div>
+    </section>
+  </main>
 
-    <main class="main-content">
-      <header class="topbar">
-        <div class="breadcrumb">
-          <span>Studies</span><b>/</b><strong>Example binding study</strong>
-        </div>
-        <div class="top-actions">
-          <button class="quiet-button" id="validateButton">
-            <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
-            Validate inputs
-          </button>
-          <button class="primary-button" id="newAnalysisButton">
-            <span>+</span> New analysis
-          </button>
-          <button class="avatar" aria-label="User profile">TK</button>
-        </div>
-      </header>
-
-      <section class="view active" id="overview-view">
-        <div class="page-heading">
-          <div>
-            <p class="eyebrow accent">Study overview</p>
-            <h1>Good morning, Ted.</h1>
-            <p>All replicas are synchronized. Your study is ready for comparative analysis.</p>
-          </div>
-          <div class="window-chip">
-            <span class="window-icon"></span>
-            <span><small>Common analysis window</small><strong>Final 300 ns</strong></span>
-            <button aria-label="Edit analysis window" id="editWindowButton">Edit</button>
-          </div>
-        </div>
-
-        <div class="stat-grid">
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-icon teal">S</span><span class="trend positive">+3 ready</span></div>
-            <strong>3</strong><p>Systems</p><small>Ligand A, Ligand B and apo</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-icon blue">R</span><span class="trend positive">100%</span></div>
-            <strong>9</strong><p>Replicas</p><small>All topology-matched</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-icon amber">T</span><span class="trend neutral">5.23 μs</span></div>
-            <strong>683</strong><p>Trajectory segments</p><small>2 timing regimes detected</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-icon violet">A</span><span class="trend positive">8 complete</span></div>
-            <strong>10</strong><p>Analysis modules</p><small>2 modules remain</small>
-          </article>
-        </div>
-
-        <div class="dashboard-grid">
-          <article class="panel systems-panel">
-            <div class="panel-header">
-              <div><h2>Systems & replicas</h2><p>Coverage and trajectory health</p></div>
-              <button class="text-button" data-target="systems">Manage systems <span>→</span></button>
-            </div>
-            <div class="system-table">
-              <div class="table-head"><span>System</span><span>Replicas</span><span>Coverage</span><span>Status</span></div>
-              <div class="system-row">
-                <div class="system-name"><span class="molecule ligand-a"></span><div><strong>Ligand A</strong><small>Protein–ligand complex</small></div></div>
-                <div class="replica-pills"><span>R1</span><span>R2</span><span>R3</span></div>
-                <div class="coverage"><div><span style="width:100%"></span></div><small>600 / 500 / 500 ns</small></div>
-                <span class="health ready">Ready</span>
-              </div>
-              <div class="system-row">
-                <div class="system-name"><span class="molecule ligand-b"></span><div><strong>Ligand B</strong><small>Modified-ligand complex</small></div></div>
-                <div class="replica-pills"><span>R1</span><span>R2</span><span>R3</span></div>
-                <div class="coverage"><div><span style="width:92%"></span></div><small>550 / 500 / 500 ns</small></div>
-                <span class="health ready">Ready</span>
-              </div>
-              <div class="system-row">
-                <div class="system-name"><span class="molecule apo"></span><div><strong>Apo</strong><small>Ligand-free control</small></div></div>
-                <div class="replica-pills"><span>R1</span><span>R2</span><span>R3</span></div>
-                <div class="coverage"><div><span style="width:78%"></span></div><small>500 / 500 / 500 ns</small></div>
-                <span class="health running">Growing</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel queue-panel">
-            <div class="panel-header">
-              <div><h2>Run queue</h2><p>Local compute activity</p></div>
-              <button class="icon-button"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M12 3a9 9 0 1 0 9 9"/></svg></button>
-            </div>
-            <div class="queue-summary">
-              <div class="queue-ring"><span>82%</span></div>
-              <div><strong>RMSF · all systems</strong><small>Replica 8 of 9</small><p>Estimated 04:18 remaining</p></div>
-            </div>
-            <div class="queue-list">
-              <div><span class="queue-state running"><i></i></span><p><strong>Ligand B · Run 3</strong><small>RMSF backbone</small></p><b>Running</b></div>
-              <div><span class="queue-state waiting"><i></i></span><p><strong>Apo · Run 3</strong><small>RMSF backbone</small></p><b>Queued</b></div>
-              <div><span class="queue-state done">✓</span><p><strong>Ligand B · Run 2</strong><small>RMSF backbone</small></p><b>Complete</b></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="dashboard-grid lower">
-          <article class="panel module-panel">
-            <div class="panel-header">
-              <div><h2>Analysis modules</h2><p>Replica-aware workflows</p></div>
-              <button class="text-button" data-target="analyses">Browse all <span>→</span></button>
-            </div>
-            <div class="module-grid">
-              <button class="module-card complete" data-module="Structural dynamics"><span class="module-glyph rmsd"></span><div><strong>Structural dynamics</strong><small>RMSD · RMSF · alignment</small></div><i>8/9</i></button>
-              <button class="module-card complete" data-module="Interaction fingerprints"><span class="module-glyph contacts"></span><div><strong>Interaction fingerprints</strong><small>ProLIF · consensus · alluvial</small></div><i>6/6</i></button>
-              <button class="module-card complete" data-module="Binding energetics"><span class="module-glyph energy"></span><div><strong>Binding energetics</strong><small>MM/GBSA · decomposition</small></div><i>6/6</i></button>
-              <button class="module-card complete" data-module="Conformational dynamics"><span class="module-glyph dihedral"></span><div><strong>Conformational dynamics</strong><small>Dihedrals · circular statistics</small></div><i>6/6</i></button>
-              <button class="module-card" data-module="Water networks"><span class="module-glyph water"></span><div><strong>Water networks</strong><small>Bridges · representative frames</small></div><i>3/6</i></button>
-              <button class="module-card complete" data-module="Spatial relationships"><span class="module-glyph distance"></span><div><strong>Spatial relationships</strong><small>COM distances · distributions</small></div><i>6/6</i></button>
-            </div>
-          </article>
-
-          <article class="panel insight-panel">
-            <div class="panel-header">
-              <div><h2>Replica insight</h2><p>Automated reproducibility check</p></div>
-              <span class="ai-badge">Consensus</span>
-            </div>
-            <div class="insight-visual">
-              <div class="mini-chart">
-                <span class="axis-label">Pocket distance</span>
-                <svg viewBox="0 0 360 130" preserveAspectRatio="none">
-                  <path class="gridline" d="M0 24H360M0 65H360M0 106H360"/>
-                  <path class="blue-area" d="M0 91C34 84 52 96 80 85S130 83 160 89s51-18 83-8 65 3 117 7V130H0Z"/>
-                  <path class="red-area" d="M0 30c32-3 47 9 76 5s45-5 74 3 50 48 80 49 62-8 130-3v46H0Z"/>
-                  <path class="blue-line" d="M0 91C34 84 52 96 80 85S130 83 160 89s51-18 83-8 65 3 117 7"/>
-                  <path class="red-line" d="M0 30c32-3 47 9 76 5s45-5 74 3 50 48 80 49 62-8 130-3"/>
-                </svg>
-                <div class="chart-legend"><span><i class="blue"></i>Ligand A</span><span><i class="red"></i>Ligand B</span></div>
-              </div>
-              <div class="insight-copy">
-                <span class="signal-icon">!</span>
-                <div><strong>Replica-dependent effect detected</strong><p>Ligand B run 1 differs from runs 2–3. Avoid a pooled-only interpretation.</p><button>Open comparison →</button></div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="view" id="systems-view">
-        <div class="page-heading compact">
-          <div><p class="eyebrow accent">Study configuration</p><h1>Systems & replicas</h1><p>Define conditions once, then apply identical analyses to every independent trajectory.</p></div>
-          <button class="primary-button" id="addSystemButton"><span>+</span> Add system</button>
-        </div>
-        <article class="panel local-systems-panel">
-          <div class="panel-header">
-            <div><h2>Local analysis systems</h2><p>Validated configurations stored only on this workstation</p></div>
-            <span class="engine-badge" id="localEngineBadge">Checking engine</span>
-          </div>
-          <div id="localSystemList" class="local-system-list">
-            <div class="empty-state"><span>↻</span><strong>Connecting to local engine</strong><small>Please wait…</small></div>
-          </div>
-        </article>
-        <p class="section-label">Interface examples</p>
-        <div class="config-grid">
-          <article class="system-config-card">
-            <div class="system-config-head"><span class="molecule ligand-a"></span><div><h2>Ligand A</h2><p>Protein–ligand complex</p></div><button class="more-button">•••</button></div>
-            <div class="path-box"><small>Topology</small><code>/study/ligand-a/system.psf</code><small>Coordinates</small><code>/study/ligand-a/system.pdb</code></div>
-            <div class="replica-stack">
-              <div><span>R1</span><p><strong>70 segments</strong><small>0–600 ns · mixed timestep</small></p><b class="health ready">Ready</b></div>
-              <div><span>R2</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-              <div><span>R3</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-            </div>
-          </article>
-          <article class="system-config-card">
-            <div class="system-config-head"><span class="molecule ligand-b"></span><div><h2>Ligand B</h2><p>Modified-ligand complex</p></div><button class="more-button">•••</button></div>
-            <div class="path-box"><small>Topology</small><code>/study/ligand-b/system.psf</code><small>Coordinates</small><code>/study/ligand-b/system.pdb</code></div>
-            <div class="replica-stack">
-              <div><span>R1</span><p><strong>55 segments</strong><small>0–550 ns · restart detected</small></p><b class="health warning">Review</b></div>
-              <div><span>R2</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-              <div><span>R3</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-            </div>
-          </article>
-          <article class="system-config-card">
-            <div class="system-config-head"><span class="molecule apo"></span><div><h2>Apo</h2><p>Ligand-free control</p></div><button class="more-button">•••</button></div>
-            <div class="path-box"><small>Topology</small><code>/study/apo/system.psf</code><small>Coordinates</small><code>/study/apo/system.pdb</code></div>
-            <div class="replica-stack">
-              <div><span>R1</span><p><strong>50 segments</strong><small>0–500 ns · still growing</small></p><b class="health running">Live</b></div>
-              <div><span>R2</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-              <div><span>R3</span><p><strong>25 segments</strong><small>0–500 ns · 20 ps/frame</small></p><b class="health ready">Ready</b></div>
-            </div>
-          </article>
-          <button class="add-card" id="addSystemCard"><span>+</span><strong>Add another system</strong><small>Import topology and replicas</small></button>
-        </div>
-      </section>
-
-      <section class="view" id="analyses-view">
-        <div class="page-heading compact">
-          <div><p class="eyebrow accent">Workflow builder</p><h1>Configure analysis</h1><p>One configuration, applied consistently across selected systems and replicas.</p></div>
-          <button class="primary-button" id="runWorkflowButton">Run 6 modules <span>→</span></button>
-        </div>
-        <div class="workflow-layout">
-          <article class="panel workflow-panel">
-            <div class="local-rmsd-box">
-              <div class="step-heading"><span>▶</span><div><h2>Executable module: RMSD</h2><p>Runs locally through VMD on a validated system</p></div></div>
-              <div class="rmsd-form-grid">
-                <label>Local system<select id="rmsdSystem"><option value="">Import a system first</option></select></label>
-                <label>Frame stride<input id="rmsdStride" type="number" min="1" value="1"></label>
-                <label class="wide">Alignment selection<input id="rmsdAlignment" value="protein and name CA"></label>
-                <label class="wide">Measurement selection<input id="rmsdSelection" value="protein and backbone"></label>
-              </div>
-              <div id="rmsdReplicaChoices" class="rmsd-replica-choices"></div>
-              <button class="primary-button" id="runLocalRmsdButton">Run RMSD locally <span>→</span></button>
-              <small class="backend-note">Outputs are written under <code>md-replica-workbench/local-results/</code>.</small>
-            </div>
-            <div class="step-heading"><span>1</span><div><h2>Select scope</h2><p>Choose systems and independent replicas</p></div></div>
-            <div class="scope-row">
-              <label class="check-card selected"><input type="checkbox" checked><span class="check"></span><span class="molecule ligand-a"></span><strong>Ligand A</strong><small>3 replicas</small></label>
-              <label class="check-card selected"><input type="checkbox" checked><span class="check"></span><span class="molecule ligand-b"></span><strong>Ligand B</strong><small>3 replicas</small></label>
-              <label class="check-card"><input type="checkbox"><span class="check"></span><span class="molecule apo"></span><strong>Apo</strong><small>3 replicas</small></label>
-            </div>
-            <div class="step-heading"><span>2</span><div><h2>Harmonize sampling</h2><p>Prevent long or densely saved trajectories from dominating</p></div></div>
-            <div class="sampling-box">
-              <div><label>Window strategy</label><button class="select-control">Final common window <span>⌄</span></button></div>
-              <div><label>Window length</label><div class="input-unit"><input value="300"><span>ns</span></div></div>
-              <div><label>Sampling interval</label><div class="input-unit"><input value="0.5"><span>ns</span></div></div>
-              <div class="sample-result"><span>✓</span><p><strong>600 frames per replica</strong><small>Equal replica weighting enabled</small></p></div>
-            </div>
-            <div class="step-heading"><span>3</span><div><h2>Choose modules</h2><p>Only compatible analyses are shown</p></div></div>
-            <div class="analysis-select-grid">
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon rmsd"></span><div><strong>RMSD & RMSF</strong><small>Structure and flexibility</small></div><span class="toggle"></span></label>
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon contacts"></span><div><strong>ProLIF contacts</strong><small>Consensus interactions</small></div><span class="toggle"></span></label>
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon water"></span><div><strong>Water bridges</strong><small>Solvent-mediated networks</small></div><span class="toggle"></span></label>
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon distance"></span><div><strong>COM distances</strong><small>Pocket and functional sites</small></div><span class="toggle"></span></label>
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon dihedral"></span><div><strong>Dihedrals</strong><small>Circular distributions</small></div><span class="toggle"></span></label>
-              <label class="analysis-option selected"><input type="checkbox" checked><span class="option-icon energy"></span><div><strong>MM/GBSA</strong><small>Total and per residue</small></div><span class="toggle"></span></label>
-            </div>
-          </article>
-          <aside class="workflow-summary">
-            <article class="panel">
-              <p class="eyebrow">Run summary</p>
-              <h2>Comparative ligand analysis</h2>
-              <div class="summary-line"><span>Systems</span><strong>2</strong></div>
-              <div class="summary-line"><span>Replicas</span><strong>6</strong></div>
-              <div class="summary-line"><span>Frames</span><strong>3,600</strong></div>
-              <div class="summary-line"><span>Modules</span><strong id="moduleCount">6</strong></div>
-              <hr>
-              <div class="estimate"><span class="pulse"></span><p><strong>Estimated runtime</strong><small>~3 h 40 min on 24 CPUs</small></p></div>
-              <button class="primary-button full" id="runWorkflowSideButton">Start analysis <span>→</span></button>
-              <small class="safe-note">Configurations and logs are saved automatically.</small>
-            </article>
-            <article class="panel callout">
-              <span>i</span><div><strong>Replica-aware by default</strong><p>Results include individual runs, equal-weight consensus, and disagreement warnings.</p></div>
-            </article>
-          </aside>
-        </div>
-      </section>
-
-      <section class="view placeholder-view" id="jobs-view">
-        <div class="page-heading compact"><div><p class="eyebrow accent">Compute</p><h1>Job monitor</h1><p>Track every system × replica task and resume interrupted work.</p></div></div>
-        <article class="panel job-board">
-          <div class="job-board-head"><span>Task</span><span>Scope</span><span>Progress</span><span>Runtime</span><span>Status</span></div>
-          <div id="localJobsList" class="job-list-body">
-            <div class="job-empty">No local jobs yet. Import a system and run RMSD.</div>
-          </div>
-        </article>
-      </section>
-
-      <section class="view placeholder-view" id="results-view">
-        <div class="page-heading compact"><div><p class="eyebrow accent">Evidence</p><h1>Comparative results</h1><p>Individual replicas, consensus estimates, and reproducibility diagnostics.</p></div><button class="quiet-button">Export report</button></div>
-        <div class="result-grid">
-          <article class="result-card"><span class="result-thumb energy-thumb"></span><div><small>Binding energetics</small><h3>Overall MM/GBSA</h3><p>Ligand A vs Ligand B · 3 replicas</p></div><button>Open →</button></article>
-          <article class="result-card"><span class="result-thumb violin-thumb"></span><div><small>Spatial relationships</small><h3>COM distances</h3><p>Pooled + replica-resolved</p></div><button>Open →</button></article>
-          <article class="result-card"><span class="result-thumb alluvial-thumb"></span><div><small>Interaction networks</small><h3>ProLIF alluvial</h3><p>Top-15 consensus residues</p></div><button>Open →</button></article>
-          <article class="result-card"><span class="result-thumb timeline-thumb"></span><div><small>Conformational dynamics</small><h3>Seven dihedrals</h3><p>Timelines + circular density</p></div><button>Open →</button></article>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal-backdrop" id="analysisModal" aria-hidden="true">
-    <div class="modal">
-      <button class="modal-close" aria-label="Close">×</button>
-      <p class="eyebrow accent">New analysis</p>
-      <h2>What would you like to explore?</h2>
-      <p>Choose a starting point. You can refine systems, replicas, selections, and sampling next.</p>
-      <div class="modal-options">
-        <button data-module="Structural dynamics"><span class="option-icon rmsd"></span><div><strong>Structural dynamics</strong><small>RMSD, RMSF, alignment and regions</small></div><b>→</b></button>
-        <button data-module="Interaction networks"><span class="option-icon contacts"></span><div><strong>Interaction networks</strong><small>ProLIF, water bridges and consensus</small></div><b>→</b></button>
-        <button data-module="Binding energetics"><span class="option-icon energy"></span><div><strong>Binding energetics</strong><small>MM/GBSA and decomposition</small></div><b>→</b></button>
-        <button data-module="Custom workflow"><span class="option-icon custom"></span><div><strong>Custom workflow</strong><small>Combine any compatible modules</small></div><b>→</b></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="systemModal" aria-hidden="true">
-    <div class="modal compact-modal">
-      <button class="modal-close" aria-label="Close">×</button>
-      <p class="eyebrow accent">Import system</p>
-      <h2>Add a system and its replicas</h2>
-      <div class="import-form">
-        <label class="field-label">System name<input id="importSystemName" placeholder="e.g. Ligand B"></label>
-        <label class="field-label">PSF topology path<input id="importPsf" placeholder="/path/to/system.psf"></label>
-        <label class="field-label">PDB coordinates path<input id="importPdb" placeholder="/path/to/system.pdb"></label>
-        <div id="replicaBlocks">
-          <div class="replica-input-block">
-            <div class="form-divider"><span>Replica 1</span></div>
-            <label class="field-label">Replica name<input data-field="name" value="Run 1"></label>
-            <label class="field-label">Trajectory directory<input data-field="trajectory_dir" placeholder="/path/to/md_run1"></label>
-            <div class="split-fields">
-              <label class="field-label">Filename pattern<input data-field="pattern" value="md-*.dcd"></label>
-              <label class="field-label">Frame interval (ns)<input data-field="frame_interval_ns" type="number" min="0.000001" step="0.001" value="0.02"></label>
-            </div>
-            <label class="field-label">First-frame time (ns)<input data-field="start_time_ns" type="number" step="0.1" value="0"></label>
-          </div>
-        </div>
-        <button class="add-replica-button" id="addReplicaButton" type="button">+ Add another replica</button>
-        <div class="import-feedback" id="importFeedback"></div>
-      </div>
-      <div class="modal-actions">
-        <button class="quiet-button" id="validateSystemButton">Validate paths</button>
-        <button class="primary-button modal-action" id="saveSystemButton">Save system <span>→</span></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="drawer" id="windowDrawer">
-    <button class="modal-close" aria-label="Close">×</button>
-    <p class="eyebrow accent">Sampling policy</p>
-    <h2>Common analysis window</h2>
-    <p>Use the same physical duration and sampling density for every independent replica.</p>
-    <label>Window length <strong id="windowValue">300 ns</strong></label>
-    <input type="range" min="50" max="500" step="50" value="300" id="windowRange">
-    <div class="range-labels"><span>50 ns</span><span>500 ns</span></div>
-    <label class="radio-row"><input type="radio" name="window" checked><span></span><div><strong>Final common window</strong><small>Recommended for equilibrated production data</small></div></label>
-    <label class="radio-row"><input type="radio" name="window"><span></span><div><strong>Explicit interval</strong><small>Use matching absolute simulation times</small></div></label>
-    <button class="primary-button full drawer-save">Apply to study</button>
-  </div>
-  <div class="drawer-shade" id="drawerShade"></div>
-  <div class="toast" id="toast"><span>✓</span><div><strong>Inputs validated</strong><small>9 replicas are ready for analysis.</small></div></div>
-
+  <div class="toast" id="toast" role="status"><strong></strong><span></span></div>
+  <div class="mobile-shade" id="mobileShade"></div>
   <script src="app.js"></script>
 </body>
 </html>

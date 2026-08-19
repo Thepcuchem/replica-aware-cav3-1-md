@@ -26,6 +26,21 @@ processed Zenodo matrices are sufficient to rerun the principal replica-aware
 PCA, classification, candidate-state recurrence, determinant, and uncertainty
 analyses without the production trajectories.
 
+## Graphical analysis workstation
+
+ReplicaLab provides a local web interface for selecting, configuring, running,
+and monitoring the analysis programs in `src/`:
+
+```bash
+./gui/run_gui.sh
+```
+
+Open `http://127.0.0.1:8765`. The interface validates local input paths, creates
+an isolated output directory for every job, captures command logs, and provides
+generated files for download. See `gui/README.md` for the workflow catalog and
+the input contract for applying the distance-based modules to other
+three-condition, multi-replica protein studies.
+
 ## Contents
 
 - `src/`: replica-aware feature extraction and analysis programs.

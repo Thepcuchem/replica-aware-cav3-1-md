@@ -63,8 +63,12 @@ def load_checkpoints(
             with np.load(path, allow_pickle=False) as data:
                 matrix = data["distances"].astype(np.float32, copy=False)
                 names = data["feature_names"]
-                if matrix.shape != (1501, 2016):
-                    raise ValueError(f"{path}: unexpected shape {matrix.shape}")
+                if matrix.ndim != 2 or matrix.shape[0] < 2 or matrix.shape[1] < 1:
+                    raise ValueError(f"{path}: expected a non-empty 2D distance matrix")
+                if len(names) != matrix.shape[1]:
+                    raise ValueError(
+                        f"{path}: {matrix.shape[1]} columns but {len(names)} feature names"
+                    )
                 if reference_names is None:
                     reference_names = names
                 elif not np.array_equal(reference_names, names):

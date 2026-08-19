@@ -5,7 +5,7 @@ CITATION.cff	2187
 LICENSE	1161
 LICENSE-DATA	912
 LICENSES.md	588
-README.md	4650
+README.md	5200
 analysis_scripts/com_distance/com_distance_prepared.tcl	2805
 analysis_scripts/com_distance/plot_com_distance_violins.py	8445
 analysis_scripts/ligand_dihedrals/ligand_dihedrals_prepared.tcl	2325
@@ -45,12 +45,13 @@ docs/ZENODO_DEPOSITION.md	915
 docs/all_systems_and_replicas_information.txt	23615
 docs/software_versions.txt	1517
 docs/summary_systems_and_completed_analyses.txt	6626
-gui/README.md	2066
-gui/app.js	15879
-gui/index.html	27921
+gui/README.md	2701
+gui/app.js	10328
+gui/index.html	6045
 gui/rmsd_runner.tcl	4021
-gui/server.py	16111
-gui/styles.css	36702
+gui/run_gui.sh	256
+gui/server.py	15176
+gui/styles.css	12349
 processed_data/auxiliary_inputs/analysis_replicas/com_distance/Z944_vs_mZ944/com_distances_all_replicas_wide.csv	121668
 processed_data/auxiliary_inputs/analysis_replicas/ligand_dihedrals/Z944_vs_mZ944/dihedral_angles_all_replicas.csv	318468
 processed_data/auxiliary_inputs/analysis_replicas/mmgbsa/Z944_vs_mZ944_comparison/per_residue_three_run_summary.csv	146895
@@ -162,7 +163,7 @@ results/structural_determinant_mapping/mZ944_vs_Z944_residue_mapping.csv	1708
 sample_trajectories/Z944_sample_1frame.dcd	3081632
 sample_trajectories/apo_sample_1frame.dcd	3089084
 sample_trajectories/mZ944_sample_1frame.dcd	3081632
-src/analyze_nine_replica_distances.py	12582
+src/analyze_nine_replica_distances.py	12826
 src/common_landscape_baseline.py	11579
 src/extract_nine_replica_distances.py	10096
 src/frame_matched_ligand_coupling.py	14502
@@ -181,5 +182,6 @@ systems/apo/initial.psf.gz	3592966
 systems/mZ944/initial.pdb.gz	4201064
 systems/mZ944/initial.psf.gz	3674562
 tests/smoke_test.py	2148
-tools/build_manifest.sh	538
+tests/test_gui_server.py	1702
+tools/build_manifest.sh	664
 tools/validate_package.sh	1396
