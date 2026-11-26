@@ -1,11 +1,11 @@
 .github/workflows/validate.yml	303
 .gitignore	269
 .zenodo.json	2630
-CITATION.cff	2336
+CITATION.cff	2268
 LICENSE	1161
 LICENSE-DATA	912
 LICENSES.md	588
-README.md	4377
+README.md	4483
 analysis_scripts/com_distance/com_distance_prepared.tcl	2805
 analysis_scripts/com_distance/plot_com_distance_violins.py	8445
 analysis_scripts/ligand_dihedrals/ligand_dihedrals_prepared.tcl	2325
