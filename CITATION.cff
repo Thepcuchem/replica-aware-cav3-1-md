@@ -37,4 +37,4 @@ keywords:
   - conformational sampling
   - protein-ligand interactions
   - uncertainty quantification
-# Add the new version DOI after Zenodo reserves it; the v1.0.0 DOI must not identify this version.
+doi: "10.5281/zenodo.24548060"

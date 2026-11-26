@@ -3,7 +3,7 @@
 This release updates v1.0.0 for the PLOS ONE Revision 3 computational analyses.
 Download the [complete processed-data and code archive](https://github.com/Thepcuchem/replica-aware-cav3-1-md/releases/download/v1.1.0/replica-aware-cav3-1-md-v1.1.0-complete.tar.gz)
 from the [v1.1.0 release](https://github.com/Thepcuchem/replica-aware-cav3-1-md/releases/tag/v1.1.0).
-An updated Zenodo version DOI is pending; the existing DOI identifies v1.0.0.
+The complete processed-data/code package is archived on [Zenodo, version 1.1.0](https://doi.org/10.5281/zenodo.24548060). The earlier v1.0.0 deposit remains preserved.
 
 ## Reproduce and verify
 
@@ -71,7 +71,7 @@ package excludes the nine distance matrices and exploratory distance checkpoint.
 Use the complete archive above for the self-contained workflow. In a GitHub
 checkout, published outputs from the earlier version are retained separately
 under `reference_outputs/v1.0.0/`; they are not numerical workflow inputs.
-A new Zenodo version DOI will be added when that deposit is updated;
+The v1.1.0 archive is also available at https://doi.org/10.5281/zenodo.24548060;
 the prior version DOI, https://doi.org/10.5281/zenodo.21990270, identifies v1.0.0.
 
 ## Production trajectories and licensing
@@ -82,6 +82,7 @@ should identify the systems, replicas and time windows required, so transfer of
 the requested trajectories and associated topology/provenance can be arranged.
 
 Code: MIT. Data and documentation: CC BY 4.0. See `LICENSES.md`. Original citation
-creators are retained. Until a new version DOI is assigned, cite the v1.1.0
-release URL. Historical documentation from v1.0.0 is retained as context and
+creators are retained. Cite the v1.1.0 version DOI,
+https://doi.org/10.5281/zenodo.24548060. Historical documentation from v1.0.0
+is retained as context and
 does not supersede the command sequence above.
