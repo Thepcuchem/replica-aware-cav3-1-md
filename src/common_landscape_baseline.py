@@ -50,6 +50,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--project", type=Path, default=PROJECT)
     parser.add_argument("--output-dir", type=Path, default=None)
+    parser.add_argument("--feature-checkpoint", type=Path)
+    parser.add_argument("--frame-metadata", type=Path)
     parser.add_argument("--stride", type=int, default=1)
     parser.add_argument("--frame-interval-ns", type=float, default=0.1)
     parser.add_argument("--max-components", type=int, default=50)
@@ -195,9 +197,17 @@ def main() -> int:
     output = args.output_dir or args.project / "results" / "common_protein_baseline"
     output.mkdir(parents=True, exist_ok=True)
 
-    distances, metadata, feature_names = extract_distances(
-        args.project, args.stride, args.frame_interval_ns
-    )
+    if args.feature_checkpoint:
+        if not args.frame_metadata:
+            raise ValueError("--frame-metadata is required with --feature-checkpoint")
+        with np.load(args.feature_checkpoint, allow_pickle=False) as z:
+            distances, feature_names = z["distances"], z["feature_names"]
+        with args.frame_metadata.open() as f:
+            metadata = [{"system": r["system"], "frame": int(r["frame"]), "time_ns": float(r["time_ns"])} for r in csv.DictReader(f)]
+        if len(metadata) != len(distances):
+            raise ValueError("Metadata/feature row mismatch")
+    else:
+        distances, metadata, feature_names = extract_distances(args.project, args.stride, args.frame_interval_ns)
     np.savez_compressed(
         output / "common_ca_distance_features.npz",
         distances=distances,

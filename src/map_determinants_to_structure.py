@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import gzip
 import argparse
 import csv
 import json
@@ -24,9 +25,9 @@ import numpy as np
 
 COMPARISONS = ("Z944_vs_Apo", "mZ944_vs_Apo", "mZ944_vs_Z944")
 REFERENCE_PDB = {
-    "Z944_vs_Apo": PROJECT / "z944/z944_dl.pdb",
-    "mZ944_vs_Apo": PROJECT / "mz944/mz944_dl.pdb",
-    "mZ944_vs_Z944": PROJECT / "mz944/mz944_dl.pdb",
+    "Z944_vs_Apo": PROJECT / "systems/Z944/initial.pdb.gz",
+    "mZ944_vs_Apo": PROJECT / "systems/mZ944/initial.pdb.gz",
+    "mZ944_vs_Z944": PROJECT / "systems/mZ944/initial.pdb.gz",
 }
 DOMAIN_COLORS = {
     "DI": "#4C78A8",
@@ -77,7 +78,7 @@ def write_annotated_pdb(
     source: Path, destination: Path, scores: dict[int, float]
 ) -> None:
     output: list[str] = []
-    for line in source.read_text(encoding="utf-8").splitlines(keepends=True):
+    for line in (gzip.open(source,"rt").read() if source.suffix == ".gz" else source.read_text(encoding="utf-8")).splitlines(keepends=True):
         if line.startswith(("ATOM  ", "HETATM")) and len(line) >= 66:
             try:
                 resid = int(line[22:26])
