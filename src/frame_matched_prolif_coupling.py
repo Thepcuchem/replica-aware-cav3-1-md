@@ -37,6 +37,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--top-pairs-per-comparison", type=int, default=25)
     parser.add_argument("--minimum-occupancy", type=float, default=0.05)
     parser.add_argument("--maximum-occupancy", type=float, default=0.95)
+    parser.add_argument(
+        "--determinants", type=Path,
+        default=PROJECT / "results/reproducible_distance_determinants/" / "top_reproducible_distance_determinants.csv",
+        help="R2 all-nine-pair determinant table, or a compatible legacy table.",
+    )
     return parser.parse_args()
 
 
@@ -101,12 +106,7 @@ def fingerprint_times(
 def main() -> int:
     args = parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    ranked_path = (
-        PROJECT
-        / "results/reproducible_distance_determinants/"
-        "top_reproducible_distance_determinants.csv"
-    )
-    with ranked_path.open(encoding="utf-8") as handle:
+    with args.determinants.open(encoding="utf-8") as handle:
         ranked = list(csv.DictReader(handle))
     selected = [
         row for row in ranked if int(row["rank"]) <= args.top_pairs_per_comparison

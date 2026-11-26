@@ -29,6 +29,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--analysis-root", type=Path, default=ANALYSIS_ROOT)
     parser.add_argument("--distance-results", type=Path, default=DISTANCE_RESULTS)
     parser.add_argument(
+        "--determinants", type=Path,
+        help="Direct path to an R2 all-nine-pair determinant table. Overrides --distance-results.",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=PROJECT / "results" / "mechanistic_evidence_integration",
@@ -65,7 +69,9 @@ def main() -> int:
     args = parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     determinant_rows = read_csv(
-        args.distance_results / "top_reproducible_distance_determinants.csv"
+        args.determinants
+        if args.determinants
+        else args.distance_results / "top_reproducible_distance_determinants.csv"
     )
     selected_pairs = [
         row for row in determinant_rows if int(row["rank"]) <= args.pairs_per_comparison

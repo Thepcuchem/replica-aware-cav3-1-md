@@ -19,6 +19,8 @@ for path in (Path(".zenodo.json"),):
         json.load(handle)
 PY
 
+tcl_dirs=(analysis_scripts)
+if [[ -d gui ]]; then tcl_dirs+=(gui); fi
 if command -v tclsh >/dev/null 2>&1; then
   while IFS= read -r -d '' script; do
     tclsh <<TCL
@@ -27,7 +29,7 @@ set data [read \$fh]
 close \$fh
 if {![info complete \$data]} {error "incomplete Tcl syntax: $script"}
 TCL
-  done < <(find analysis_scripts gui -type f -name '*.tcl' -print0)
+  done < <(find "${tcl_dirs[@]}" -type f -name '*.tcl' -print0)
 fi
 
 bash -n tools/build_manifest.sh tools/validate_package.sh

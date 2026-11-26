@@ -1,135 +1,87 @@
-# Replica-aware machine learning for Cav3.1 molecular dynamics
+# Cav3.1 replica-aware reproducibility package — v1.1.0
 
-Reproducibility package for the manuscript:
+This release updates v1.0.0 for the PLOS ONE Revision 3 computational analyses.
+Download the [complete processed-data and code archive](https://github.com/Thepcuchem/replica-aware-cav3-1-md/releases/download/v1.1.0/replica-aware-cav3-1-md-v1.1.0-complete.tar.gz)
+from the [v1.1.0 release](https://github.com/Thepcuchem/replica-aware-cav3-1-md/releases/tag/v1.1.0).
+An updated Zenodo version DOI is pending; the existing DOI identifies v1.0.0.
 
-> *Replica-Aware Validation of Machine Learning for Reliable Interpretation of
-> Molecular Dynamics Trajectories: A Case Study of the Cav3.1 Channel*
+## Reproduce and verify
 
-Archived release: [https://doi.org/10.5281/zenodo.21990270](https://doi.org/10.5281/zenodo.21990270)
-
-The study compares apo, Z944-bound, and mZ944-bound human Cav3.1 pore-domain
-simulations. It tests whether apparent global conformational separation survives
-whole-replica validation, then identifies local residue-distance changes that are
-consistent across three independent simulations per system.
-
-## Package layers
-
-The GitHub repository contains code, documentation, initial structures,
-one-frame example trajectories, representative configurations, auxiliary
-processed inputs, and key reported outputs. The matching Zenodo archive adds
-the nine processed C-alpha distance matrices under
-`processed_data/common_ca_distances/`.
-
-Full production DCD trajectories are not redistributed because of their size.
-They are available from the corresponding author upon reasonable request. The
-processed Zenodo matrices are sufficient to rerun the principal replica-aware
-PCA, classification, candidate-state recurrence, determinant, and uncertainty
-analyses without the production trajectories.
-
-## Graphical analysis workstation
-
-ReplicaLab provides a local web interface for selecting, configuring, running,
-and monitoring the analysis programs in `src/`:
+Use Python 3.10 and unpack the complete data-and-code archive into a clean
+directory containing no `results/` directory:
 
 ```bash
-./gui/run_gui.sh
+python3.10 -m venv .venv
+.venv/bin/python -m pip install -r requirements-reproduction-lock.txt
+.venv/bin/python run_reproduction.py
 ```
 
-Open `http://127.0.0.1:8765`. The interface validates local input paths, creates
-an isolated output directory for every job, captures command logs, and provides
-generated files for download. See `gui/README.md` for the workflow catalog and
-the input contract for applying the distance-based modules to other
-three-condition, multi-replica protein studies.
+The runner performs 18 analysis/plotting stages and then invokes the independent
+numerical verifier. It stops on any error. The command succeeds only when freshly
+calculated results meet the numerical checks in `validation/comparisons.json`
+and the revised S3/S4 checks. Read `results/validation_report.json` and
+`results/execution_results.json`; detailed logs are in `results/logs/`.
 
-## Contents
-
-- `src/`: replica-aware feature extraction and analysis programs.
-- `analysis_scripts/`: conventional RMSD, ProLIF, hydration, MM/GBSA, ligand
-  position, and ligand-dihedral workflows.
-- `processed_data/auxiliary_inputs/`: compact input tables used for mechanistic
-  integration and frame-matched coupling.
-- `processed_data/common_ca_distances/`: nine matrices distributed in the
-  Zenodo archive; intentionally omitted from the GitHub branch.
-- `results/`: key machine-readable tables, figures, scientific-status report,
-  and quality-audit report.
-- `systems/`: gzipped initial PDB and PSF files.
-- `sample_trajectories/`: one full-system DCD frame for each molecular system.
-- `config_examples/`: representative NAMD and MM/GBSA configurations.
-- `docs/`: data dictionary, reproducibility instructions, and release guidance.
-- `tests/`: lightweight package and data-integrity checks.
-
-## Installation
-
-Python 3.10 or newer is recommended.
+To recheck already generated results:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
+.venv/bin/python verify_reproduction.py
 ```
 
-NAMD and VMD are required only for simulation or Tcl-based trajectory analyses.
+Reference tables under `validation/reference/` are used only for comparison after
+calculation. The analysis workflows never read those tables. The release archive
+does not include a precomputed `results/` directory. Successful file existence
+checks alone are not numerical reproduction.
 
-## Reproduce the principal analyses
+## Inputs and outputs
 
-Download and unpack the Zenodo release so that the nine NPZ files are present
-in `processed_data/common_ca_distances/`, then run:
+- Nine 1,501 × 2,016 replica-resolved Cα-distance matrices, with feature, time,
+  source-frame and replica metadata.
+- Nine processed RMSD tables for the five-descriptor PCA and negative control.
+- The original 8,897 × 2,016 exploratory distance checkpoint plus system/frame/
+  nominal-time metadata, distinct from the nine-replica dataset.
+- Ligand COM and torsion observations, ProLIF fingerprints/time mappings,
+  aggregate MM/GBSA residue evidence, and limited Z944 water-bridge descriptors.
+- Initial structures, topology files, one-frame compatibility examples,
+  extraction/configuration examples, portable analysis and plotting code.
+- Revision-specific pairing-invariance, tICA, held-out classification, Welch,
+  autocorrelation, bootstrap and full-network sensitivity workflows.
 
-```bash
-python3 src/analyze_nine_replica_distances.py
-python3 src/hierarchical_state_discovery.py
-python3 src/reproducible_distance_determinants.py
-python3 src/validate_determinant_uncertainty.py
-python3 src/integrate_mechanistic_evidence.py
-python3 src/frame_matched_ligand_coupling.py
-python3 src/frame_matched_prolif_coupling.py
-```
+The runner generates computational plot components and machine-readable tables
+under `results/`. It reproduces the 10/30/50-ns full-filter network counts:
 
-Each program provides `--help`; output directories default to the matching
-subdirectory under `results/`. See `docs/REPRODUCIBILITY.md` for the expected
-inputs, output order, and limitations.
+| Contrast | 10 ns | 30 ns | 50 ns |
+| --- | ---: | ---: | ---: |
+| Z944 versus apo | 11 | 7 | 6 |
+| mZ944 versus apo | 8 | 8 | 8 |
+| mZ944 versus Z944 | 10 | 10 | 9 |
 
-## Validate the package
+All revised S3 memberships and the 14 displayed S4 torsion-distance selections
+are checked independently. See `docs/REPRODUCTION.md` for numerical assumptions,
+seeds and the distinction between the two original bootstrap realizations.
 
-```bash
-python3 tests/smoke_test.py
-./tools/validate_package.sh
-```
+Exact schematic artwork, camera choices, molecular scenes and final composite
+layouts are separate from the verified numerical analyses. The existing
+distance and auxiliary descriptors cannot regenerate production coordinates.
 
-The smoke test does not require the full production trajectories. When the
-Zenodo matrices are present, it also validates their shapes, feature ordering,
-time axes, and finite values.
+## GitHub and data layers
 
-## Scientific scope
+The complete archive contains all processed inputs. The smaller GitHub source
+package excludes the nine distance matrices and exploratory distance checkpoint.
+Use the complete archive above for the self-contained workflow. In a GitHub
+checkout, published outputs from the earlier version are retained separately
+under `reference_outputs/v1.0.0/`; they are not numerical workflow inputs.
+A new Zenodo version DOI will be added when that deposit is updated;
+the prior version DOI, https://doi.org/10.5281/zenodo.21990270, identifies v1.0.0.
 
-Frames from the same MD trajectory are temporally correlated and are not
-treated as independent replicas. Model evaluation withholds complete
-trajectories. Candidate clusters are not interpreted as common metastable
-states because their structures do not recur across replicas. The supported
-conclusions concern replica-consistent local distance changes and their
-integration with ligand contacts, energetics, hydration, position, and torsion
-dynamics.
+## Production trajectories and licensing
 
-## Authors
+Full production MD trajectories are available from the corresponding author,
+Pornthep Sompornpisut (pornthep.s@chula.ac.th), upon reasonable request. Requests
+should identify the systems, replicas and time windows required, so transfer of
+the requested trajectories and associated topology/provenance can be arranged.
 
-- Theodore Feisal Khoushab
-- Panisak Boonamnaj
-- Pisit Lerttanakij
-- Ras B. Pandey
-- Pornthep Sompornpisut
-
-Correspondence: Pornthep Sompornpisut
-([pornthep.s@chula.ac.th](mailto:pornthep.s@chula.ac.th)).
-
-## Licensing
-
-Code is released under the MIT License. Documentation, prepared structures,
-configuration examples, sample trajectories, processed data, and result files
-are released under CC BY 4.0. Force-field parameter distributions are not
-included. See `LICENSES.md`.
-
-## Citation
-
-Use `CITATION.cff`. After Zenodo mints the DOI for release `v1.0.0`, replace the
-two DOI placeholders in `CITATION.cff`, `.zenodo.json`, and the manuscript Data
-and Software Availability statement.
+Code: MIT. Data and documentation: CC BY 4.0. See `LICENSES.md`. Original citation
+creators are retained. Until a new version DOI is assigned, cite the v1.1.0
+release URL. Historical documentation from v1.0.0 is retained as context and
+does not supersede the command sequence above.

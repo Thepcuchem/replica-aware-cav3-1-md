@@ -35,6 +35,11 @@ def parse_args() -> argparse.Namespace:
         default=PROJECT / "results" / "frame_matched_ligand_coupling",
     )
     parser.add_argument("--top-pairs-per-comparison", type=int, default=25)
+    parser.add_argument(
+        "--determinants", type=Path,
+        default=PROJECT / "results/reproducible_distance_determinants/" / "top_reproducible_distance_determinants.csv",
+        help="R2 all-nine-pair determinant table, or a compatible legacy table.",
+    )
     return parser.parse_args()
 
 
@@ -73,11 +78,7 @@ def load_distance_series(
 def main() -> int:
     args = parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    ranked = read_csv(
-        PROJECT
-        / "results/reproducible_distance_determinants/"
-        "top_reproducible_distance_determinants.csv"
-    )
+    ranked = read_csv(args.determinants)
     chosen = [
         row
         for row in ranked

@@ -1,0 +1,337 @@
+[
+  {
+    "reference": "validation/reference/all9_pair_block_length_intervals.csv",
+    "result": "revision2/all9_pair_block_length_intervals.csv",
+    "keys": [
+      "comparison",
+      "feature",
+      "block_ns",
+      "numerator_run",
+      "denominator_run"
+    ],
+    "numeric_fields": [
+      "CI_low_A",
+      "CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/all9_pair_block_length_intervals.csv",
+    "source_sha256": "7c1f210dc108bcad98f31f65414120df0394dc19f6a79114b4a302175a1f47c3",
+    "rows": 3375
+  },
+  {
+    "reference": "validation/reference/principal_feature_welch_intervals.csv",
+    "result": "revision2/principal_feature_welch_intervals.csv",
+    "keys": [
+      "comparison",
+      "feature"
+    ],
+    "numeric_fields": [
+      "mean_difference_A",
+      "welch_CI_low_A",
+      "welch_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/principal_feature_welch_intervals.csv",
+    "source_sha256": "5adcb3b4ab6735dc89cbc1ff39cca2d7b991cb19da494ed7a9292d70dec6f0c1",
+    "rows": 75
+  },
+  {
+    "reference": "validation/reference/principal_feature_autocorrelation.csv",
+    "result": "revision2/principal_feature_autocorrelation.csv",
+    "keys": [
+      "comparison",
+      "feature",
+      "system",
+      "run"
+    ],
+    "numeric_fields": [
+      "integrated_autocorrelation_time_ns"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/principal_feature_autocorrelation.csv",
+    "source_sha256": "3a8ddb6dc37a3e16518b5d236db89df8a9a9a4a3c74cd89d9b045f69ae81665a",
+    "rows": 450
+  },
+  {
+    "reference": "validation/reference/principal_feature_window_sensitivity.csv",
+    "result": "revision2/principal_feature_window_sensitivity.csv",
+    "keys": [
+      "comparison",
+      "feature",
+      "window_ns"
+    ],
+    "numeric_fields": [
+      "mean_difference_A",
+      "welch_CI_low_A",
+      "welch_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/principal_feature_window_sensitivity.csv",
+    "source_sha256": "16d7f7dc4068d968220f4c72a3b767ba8bb3c27b1c4d5236572f8f3c2b40d541",
+    "rows": 375
+  },
+  {
+    "reference": "validation/reference/classifier_fold_results.csv",
+    "result": "revision2/classifier_fold_results.csv",
+    "keys": [
+      "classifier",
+      "held_out_run"
+    ],
+    "numeric_fields": [
+      "balanced_accuracy"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/classifier_fold_results.csv",
+    "source_sha256": "df94acb7a0a95464c275af718ace32ade9bff05e14325ab2afb1814b3fa31525",
+    "rows": 6
+  },
+  {
+    "reference": "validation/reference/classifier_trajectory_predictions.csv",
+    "result": "revision2/classifier_trajectory_predictions.csv",
+    "keys": [
+      "classifier",
+      "held_out_run",
+      "true_system",
+      "predicted_system"
+    ],
+    "numeric_fields": [
+      "mean_probability_Apo",
+      "mean_probability_Z944",
+      "mean_probability_mZ944"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "Revision2/R2_analysis/classifier_trajectory_predictions.csv",
+    "source_sha256": "d6723ee539050e5ad7afac8d94522ba872618f860b59676e39e9897f55dd5402",
+    "rows": 18
+  },
+  {
+    "reference": "validation/reference/assignments.csv",
+    "result": "pairing/one_to_one_assignment_sensitivity.csv",
+    "keys": [
+      "comparison",
+      "denominator_assignment_for_numerator_runs_1_2_3"
+    ],
+    "numeric_fields": [
+      "sign_consistent_features_all_2016",
+      "original_top25_retained"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/replica_pairing_invariance/one_to_one_assignment_sensitivity.csv",
+    "source_sha256": "a58845b8b2c9d5558f278c2298f362515828190b3ef6625aa02d9081b6220548",
+    "rows": 18
+  },
+  {
+    "reference": "validation/reference/Z944_vs_Apo_top_pairing_invariant_features.csv",
+    "result": "pairing/Z944_vs_Apo_top_pairing_invariant_features.csv",
+    "keys": [
+      "comparison",
+      "feature"
+    ],
+    "numeric_fields": [
+      "system_mean_difference_A",
+      "minimum_absolute_standardized_effect_all_9_pairs",
+      "unpaired_replica_95_CI_low_A",
+      "unpaired_replica_95_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/replica_pairing_invariance/Z944_vs_Apo_top_pairing_invariant_features.csv",
+    "source_sha256": "67685f75be830f7d217139e6dcf7ec2120793ab0487ce21570fceb82ca73bb76",
+    "rows": 25,
+    "ordered": true
+  },
+  {
+    "reference": "validation/reference/mZ944_vs_Apo_top_pairing_invariant_features.csv",
+    "result": "pairing/mZ944_vs_Apo_top_pairing_invariant_features.csv",
+    "keys": [
+      "comparison",
+      "feature"
+    ],
+    "numeric_fields": [
+      "system_mean_difference_A",
+      "minimum_absolute_standardized_effect_all_9_pairs",
+      "unpaired_replica_95_CI_low_A",
+      "unpaired_replica_95_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/replica_pairing_invariance/mZ944_vs_Apo_top_pairing_invariant_features.csv",
+    "source_sha256": "b990d3f5eb1699b42e71fabbde8d14f1f292663ea536b6b6066bf0fdab328f4a",
+    "rows": 25,
+    "ordered": true
+  },
+  {
+    "reference": "validation/reference/mZ944_vs_Z944_top_pairing_invariant_features.csv",
+    "result": "pairing/mZ944_vs_Z944_top_pairing_invariant_features.csv",
+    "keys": [
+      "comparison",
+      "feature"
+    ],
+    "numeric_fields": [
+      "system_mean_difference_A",
+      "minimum_absolute_standardized_effect_all_9_pairs",
+      "unpaired_replica_95_CI_low_A",
+      "unpaired_replica_95_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/replica_pairing_invariance/mZ944_vs_Z944_top_pairing_invariant_features.csv",
+    "source_sha256": "fe8b108879bde45b07cece30a1afa1557471b1d74a026dcadfa74669e45b0f51",
+    "rows": 25,
+    "ordered": true
+  },
+  {
+    "reference": "validation/reference/reproducible_distance_COM_coupling.csv",
+    "result": "frame_matched_ligand_coupling/reproducible_distance_COM_coupling.csv",
+    "keys": [
+      "system",
+      "feature",
+      "descriptor"
+    ],
+    "numeric_fields": [
+      "run1_rho",
+      "run2_rho",
+      "run3_rho",
+      "minimum_absolute_rho"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/frame_matched_ligand_coupling_pairing_invariant/reproducible_distance_COM_coupling.csv",
+    "source_sha256": "e1338621fa79c69fdb2ca9f30e19605ac47132e657bb52bdb90f8a41ce87135b",
+    "rows": 284
+  },
+  {
+    "reference": "validation/reference/reproducible_distance_ProLIF_coupling.csv",
+    "result": "frame_matched_prolif_coupling/reproducible_distance_ProLIF_coupling.csv",
+    "keys": [
+      "system",
+      "feature",
+      "contact_residue"
+    ],
+    "numeric_fields": [
+      "run1_rho",
+      "run2_rho",
+      "run3_rho",
+      "minimum_absolute_rho"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/frame_matched_prolif_coupling_pairing_invariant/reproducible_distance_ProLIF_coupling.csv",
+    "source_sha256": "758823d71b44e2546e4a5c00618c0d6a51d2854a417ae178fd6aa5e208d84800",
+    "rows": 38
+  },
+  {
+    "reference": "validation/reference/integrated_residue_evidence.csv",
+    "result": "mechanistic_evidence_integration/integrated_residue_evidence.csv",
+    "keys": [
+      "resid"
+    ],
+    "numeric_fields": [
+      "structural_score",
+      "Z944_ProLIF_contact",
+      "mZ944_ProLIF_contact",
+      "Z944_MMGBSA_total_kcal_mol",
+      "mZ944_MMGBSA_total_kcal_mol",
+      "Z944_water_bridge_mean_percent"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/figure5_pairing_invariant/integrated/integrated_residue_evidence.csv",
+    "source_sha256": "f4dafeb9153a1db15b82fcca6feb03d27932cea698a571c8bb353f79cdba035d",
+    "rows": 45
+  },
+  {
+    "reference": "validation/reference/common_protein_baseline_pca.csv",
+    "result": "common_protein_baseline/pca_explained_variance.csv",
+    "keys": [
+      "component"
+    ],
+    "numeric_fields": [
+      "explained_variance_ratio",
+      "cumulative_explained_variance"
+    ],
+    "atol": 1e-05,
+    "rtol": 0,
+    "source": "results/common_protein_baseline/pca_explained_variance.csv",
+    "source_sha256": "e92df8e838da242a095e05c9920e10d97ff6da142c49546377b3f6b6290c3518",
+    "rows": 50
+  },
+  {
+    "reference": "validation/reference/nine_replica_distance_validation_pca.csv",
+    "result": "nine_replica_distance_validation/pca_explained_variance.csv",
+    "keys": [
+      "component"
+    ],
+    "numeric_fields": [
+      "explained_variance_ratio",
+      "cumulative_explained_variance"
+    ],
+    "atol": 1e-05,
+    "rtol": 0,
+    "source": "results/nine_replica_distance_validation/pca_explained_variance.csv",
+    "source_sha256": "2984155c6a77e17248434dbe9f01d0794d78377ad165b6f545665d76fc5c86c9",
+    "rows": 50
+  },
+  {
+    "reference": "validation/reference/tica_recurrence.csv",
+    "result": "tica/tica_state_centroid_recurrence.csv",
+    "keys": [
+      "lag_ns",
+      "system",
+      "reference_replica",
+      "comparison_replica",
+      "reference_state"
+    ],
+    "numeric_fields": [
+      "distance_to_separation_ratio"
+    ],
+    "atol": 0.0001,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/tica_state_recurrence_validation/tica_state_centroid_recurrence.csv",
+    "source_sha256": "aeb7c8f5b4afc4bf87ee0cb4d715f795dffb57781e3e30134ec429c3d10fad73",
+    "rows": 36
+  },
+  {
+    "reference": "validation/reference/tica_timescales.csv",
+    "result": "tica/tica_implied_timescales.csv",
+    "keys": [
+      "lag_ns",
+      "component"
+    ],
+    "numeric_fields": [
+      "tica_eigenvalue",
+      "implied_timescale_ns"
+    ],
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "source": "POne/revision_analysis/results/tica_state_recurrence_validation/tica_implied_timescales.csv",
+    "source_sha256": "30ba469c9f11ca76facf308fa83abaca0b8920cdada6bfdeb71fe344a1a28e12",
+    "rows": 15
+  },
+  {
+    "reference": "validation/reference/original_bootstrap.csv",
+    "result": "original_all9/all9_pair_block_bootstrap_intervals.csv",
+    "keys": [
+      "comparison",
+      "feature",
+      "numerator_run",
+      "denominator_run"
+    ],
+    "numeric_fields": [
+      "block_bootstrap_95_CI_low_A",
+      "block_bootstrap_95_CI_high_A"
+    ],
+    "atol": 1e-10,
+    "rtol": 0,
+    "source": "POne/revision_analysis/results/all9_pair_block_bootstrap/all9_pair_block_bootstrap_intervals.csv",
+    "source_sha256": "1b411fe3aded166a3f08e1b6ba81d19f601cc43608c1d5d25e06062845161c1f",
+    "rows": 675
+  }
+]

@@ -8,6 +8,8 @@ find . -type f \
   ! -path './.git/*' \
   ! -path './gui/data/*' \
   ! -path './gui/local-results/*' \
+  ! -path './results/*' \
+  ! -path './.venv/*' \
   ! -path '*/__pycache__/*' \
   ! -name '*.pyc' \
   ! -name 'MANIFEST.tsv' \
@@ -19,6 +21,8 @@ find . -type f \
   ! -path './.git/*' \
   ! -path './gui/data/*' \
   ! -path './gui/local-results/*' \
+  ! -path './results/*' \
+  ! -path './.venv/*' \
   ! -path '*/__pycache__/*' \
   ! -name '*.pyc' \
   ! -name 'SHA256SUMS' \

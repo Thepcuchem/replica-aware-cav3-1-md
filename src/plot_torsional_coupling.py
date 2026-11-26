@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 from pathlib import Path
 
 import matplotlib
@@ -24,8 +25,14 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def main() -> int:
-    summary = read_csv(RESULTS / "reproducible_distance_dihedral_coupling.csv")
-    raw = read_csv(RESULTS / "distance_dihedral_correlations_by_replica.csv")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--results-dir", type=Path, default=RESULTS)
+    parser.add_argument("--output-dir", type=Path, default=None)
+    args = parser.parse_args()
+    output_dir = args.output_dir or args.results_dir
+    output_dir.mkdir(parents=True, exist_ok=True)
+    summary = read_csv(args.results_dir / "reproducible_distance_dihedral_coupling.csv")
+    raw = read_csv(args.results_dir / "distance_dihedral_correlations_by_replica.csv")
     raw_index = {
         (row["system"], row["feature"], row["dihedral"], int(row["replica"])): row
         for row in raw
@@ -62,9 +69,11 @@ def main() -> int:
             phases[row_index, replica - 1] = float(detail["phase_rad"])
 
     figure, (axis, p_axis) = plt.subplots(
-        1, 2, figsize=(11.5, 8.2), gridspec_kw={"width_ratios": (4.8, 1.0)},
-        constrained_layout=True,
+        1, 2, figsize=(11.5, 9.2), gridspec_kw={"width_ratios": (4.8, 1.0)},
     )
+    # Reserve a lower band for the marker-size key so it does not cover plotted
+    # relationships in panel A after publication-size scaling.
+    figure.subplots_adjust(left=0.27, right=0.95, bottom=0.18, top=0.88, wspace=0.30)
     y = np.arange(len(selected))
     for replica in range(3):
         scatter = axis.scatter(
@@ -74,7 +83,7 @@ def main() -> int:
             edgecolors="#263746", linewidths=0.45,
         )
     axis.set_xticks((0, 1, 2), ("run1", "run2", "run3"))
-    axis.set_yticks(y, labels, fontsize=9)
+    axis.set_yticks(y, labels, fontsize=14)
     axis.set_xlim(-0.55, 2.55)
     axis.set_ylim(len(selected) - 0.4, -0.6)
     axis.grid(axis="x", color="#d8dde2", linewidth=0.8)
@@ -93,18 +102,21 @@ def main() -> int:
     p_axis.set_xlabel("Phase consistency, P")
     p_axis.set_title("B   Across-replica\nphase recurrence", loc="left", fontweight="bold")
     for row_index, value in enumerate(consistency):
-        p_axis.text(min(value + 0.025, 0.96), row_index, f"{value:.2f}", va="center", fontsize=8)
+        p_axis.text(min(value + 0.025, 0.96), row_index, f"{value:.2f}", va="center", fontsize=14)
 
     for strength, label in ((0.10, "R = 0.10"), (0.25, "R = 0.25"), (0.40, "R = 0.40")):
         axis.scatter([], [], s=45 + 950 * strength**2, facecolor="#b7b7b7",
                      edgecolor="#263746", linewidth=0.45, label=label)
-    axis.legend(title="Marker size", loc="lower right", frameon=False, fontsize=8)
+    axis.legend(
+        title="Marker size", loc="upper center", bbox_to_anchor=(0.5, -0.085),
+        ncol=3, frameon=False, fontsize=14, borderaxespad=0,
+    )
     figure.suptitle(
         "Replica-recurrent coupling of ligand torsions to protein Cα–Cα distances",
-        fontsize=14, fontweight="bold",
+        fontsize=18, fontweight="bold",
     )
-    figure.savefig(RESULTS / "reproducible_distance_dihedral_coupling.png", dpi=300)
-    figure.savefig(RESULTS / "reproducible_distance_dihedral_coupling.pdf")
+    figure.savefig(output_dir / "reproducible_distance_dihedral_coupling.png", dpi=300)
+    figure.savefig(output_dir / "reproducible_distance_dihedral_coupling.pdf")
     plt.close(figure)
     return 0
 

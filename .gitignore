@@ -11,3 +11,6 @@ systems/*/initial.psf
 processed_data/common_ca_distances/
 *.tar.gz
 *.zip
+
+# Generated outputs; historical results are retained under reference_outputs/.
+results/
